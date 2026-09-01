@@ -11,7 +11,7 @@ const { extractTextFromPDF } = require('../cvParser');
 // وده اسم مش متعارف عليه رسميًا وقت كتابة الكود ده. سيبناه قابل للتغيير من .env
 // (GEMINI_CV_MODEL) عشان تقدروا تحطوا الاسم الصحيح بمجرد ما تتأكدوا منه من توثيق Gemini،
 // من غير ما تحتاجوا تعدّلوا في الكود نفسه.
-const CV_ANALYSIS_MODEL = process.env.GEMINI_CV_MODEL || 'gemini-2.0-flash';
+const CV_ANALYSIS_MODEL = process.env.GEMINI_CV_MODEL || 'gemini-3.5-flash';
 
 const analyzeCVTextWithGemini = async (cvText) => {
   if (typeof cvText !== 'string' || cvText.trim() === '') {
