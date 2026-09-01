@@ -1,4 +1,4 @@
-// نسخة CommonJS مدمجة من src/ai/analyze-cv.js و src/ai/analyze-cv-file.js بتوع زميلك
+﻿// تحليل الـ CV بـ Gemini
 // بستخدم extractTextFromPDF الموجودة عندنا في ai/cvParser.js (pdf-parse v1) بدل مكتبة pdf-parse v2
 // اللي كان مستخدمها هو، عشان نتفادى تعارض إصدارات في نفس المشروع
 
@@ -7,7 +7,7 @@ const { createCVAnalysisPrompt, cvAnalysisSchema } = require('./cvAnalysisPrompt
 const { parseAIJsonResponse } = require('./aiResponse');
 const { extractTextFromPDF } = require('../cvParser');
 
-// ⚠️ ملحوظة مهمة: الكود الأصلي بتاع زميلك بيستخدم اسم موديل "gemini-3.5-flash"
+// اسم موديل Gemini المستخدم في تحليل الـ CV
 // وده اسم مش متعارف عليه رسميًا وقت كتابة الكود ده. سيبناه قابل للتغيير من .env
 // (GEMINI_CV_MODEL) عشان تقدروا تحطوا الاسم الصحيح بمجرد ما تتأكدوا منه من توثيق Gemini،
 // من غير ما تحتاجوا تعدّلوا في الكود نفسه.

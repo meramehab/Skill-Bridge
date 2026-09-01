@@ -1,4 +1,4 @@
-// نسخة CommonJS من الـ prompt والـ schema بتوع زميلك (كانوا ES Modules في src/prompts و src/schemas)
+﻿// الـ prompt والـ schema المستخدمين لتحليل الـ CV بـ Gemini
 
 const createCVAnalysisPrompt = (cvText) => {
   return `

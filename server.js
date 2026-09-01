@@ -1,4 +1,4 @@
-require('dotenv').config();
+﻿require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -14,7 +14,7 @@ const leaderboardRoutes = require('./src/routes/leaderboard.routes');
 const notificationsRoutes = require('./src/routes/notifications.routes');
 const aiRoutes = require('./src/routes/ai.routes');
 
-// Member 3
+// ????? ??????
 const adminRoutes = require('./src/routes/admin.routes');
 const analyticsRoutes = require('./src/routes/analytics.routes');
 const studentDashboardRoutes = require('./src/routes/studentDashboard.routes');
@@ -28,7 +28,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes - Member 1 & 2
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/projects', projectRoutes);
@@ -40,7 +40,7 @@ app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/notifications', notificationsRoutes);
 app.use('/api/ai', aiRoutes);
 
-// Routes - Member 3
+// ????? ??????
 app.use('/api/admin', adminRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/student-dashboard', studentDashboardRoutes);

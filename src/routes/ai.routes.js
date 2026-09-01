@@ -1,4 +1,4 @@
-const express = require('express');
+﻿const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
@@ -82,7 +82,7 @@ router.post('/cv/analyze', protect, upload.single('cv'), async (req, res) => {
   }
 });
 
-// ---------- CV Analysis بـ Gemini الحقيقي (شغل زميلك) ----------
+// ---------- CV Analysis بـ Gemini الحقيقي ----------
 // endpoint منفصل عن /cv/analyze الأصلي (Rule-Based) عشان القديمة تفضل شغالة كـ fallback
 // من غير API key. لو GEMINI_API_KEY متظبط في .env، استخدموا الـ endpoint ده بدلها.
 router.post('/cv/analyze-gemini', protect, upload.single('cv'), async (req, res) => {
@@ -94,7 +94,7 @@ router.post('/cv/analyze-gemini', protect, upload.single('cv'), async (req, res)
     // استخراج النص بنفس مكتبة pdf-parse الموجودة عندنا في المشروع (v1)
     const rawText = await extractTextFromPDF(req.file.path);
 
-    // تحليل النص فعليًا بـ Gemini (نفس منطق زميلك، بس CommonJS)
+    // تحليل النص فعليًا بـ Gemini (تحليل النص فعليًا بـ Gemini)
     const geminiResult = await analyzeCVTextWithGemini(rawText);
 
     const cv = await CV.create({
@@ -103,7 +103,7 @@ router.post('/cv/analyze-gemini', protect, upload.single('cv'), async (req, res)
       rawText,
       extractedSkills: geminiResult.skills || [],
       missingSkills: [], // Gemini مش بيرجع "missing skills" بنفس منطق النسخة القديمة
-      careerReadinessScore: 0, // مش جزء من مخرجات Gemini في الكود الحالي بتاع زميلك
+      careerReadinessScore: 0, // مش جزء من مخرجات Gemini الحالية
       suggestedLearningPath: [],
     });
 
@@ -167,7 +167,7 @@ router.post('/risk-check', protect, (req, res) => {
   }
 });
 
-// ================== Member 3 AI ==================
+// ================== AI متقدم ==================
 
 // ---------- AI Quality Gate (فحص جودة + أمان أوسع من code/analyze) ----------
 router.post('/quality-gate', protect, (req, res) => {

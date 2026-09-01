@@ -1,4 +1,4 @@
-// نسخة CommonJS من src/utils/ai-response.js بتاع زميلك
+﻿// تحليل رد Gemini النصي وتحويله لـ JSON
 
 const parseAIJsonResponse = (response, purpose) => {
   const responseText = response?.text?.trim();

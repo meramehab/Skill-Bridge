@@ -1,7 +1,7 @@
-// كل الموديلز هنا مبنية بقواعد ومنطق بسيط (Rule-Based / Heuristic) من غير أي API مدفوع
+﻿// كل الموديلز هنا مبنية بقواعد ومنطق بسيط (Rule-Based / Heuristic) من غير أي API مدفوع
 // الهدف: MVP سريع وبتكلفة صفر، وقابل للاستبدال بموديلات أقوى لاحقًا
 
-// ---------- Code Quality Analysis (Member 1 AI) ----------
+// ---------- Code Quality Analysis ----------
 // فحص مبدئي بسيط لجودة الكود بناءً على مؤشرات نصية (مش تحليل AST حقيقي)
 const analyzeCodeQuality = (codeText) => {
   const issues = [];
@@ -43,7 +43,7 @@ const analyzeCodeQuality = (codeText) => {
   return { score, issues };
 };
 
-// ---------- Quiz Generation (Member 2 AI) ----------
+// ---------- Quiz Generation ----------
 // بنك أسئلة ثابت بسيط لكل مهارة - MVP
 const QUIZ_BANK = {
   javascript: [
@@ -64,7 +64,7 @@ const generateQuiz = (skill, count = 3) => {
   return questions.slice(0, count);
 };
 
-// ---------- Practical Task Assessment (Member 2 AI) ----------
+// ---------- Practical Task Assessment ----------
 // تقييم مبدئي لمهمة عملية قصيرة بناءً على معايير بسيطة (نسبة إنجاز + وقت التسليم)
 const assessPracticalTask = ({ completionPercent, submittedOnTime, meetsRequirements }) => {
   let score = 0;
@@ -76,7 +76,7 @@ const assessPracticalTask = ({ completionPercent, submittedOnTime, meetsRequirem
   return { score: Math.round(score), passed };
 };
 
-// ---------- AI Team Matching (Member 2 AI) ----------
+// ---------- AI Team Matching ----------
 // ترشيح أعضاء لفريق بناءً على تطابق المهارات المطلوبة
 const matchTeamMembers = (candidates, requiredSkills) => {
   const requiredSet = requiredSkills.map((s) => s.toLowerCase());
@@ -91,7 +91,7 @@ const matchTeamMembers = (candidates, requiredSkills) => {
     .sort((a, b) => b.matchScore - a.matchScore);
 };
 
-// ---------- AI Job Matching (Member 2 AI) ----------
+// ---------- AI Job Matching ----------
 // ترشيح مشاريع مناسبة لطالب بناءً على مهاراته
 const matchJobsForStudent = (studentSkills, projects) => {
   const studentSet = (studentSkills || []).map((s) => s.toLowerCase());
@@ -107,7 +107,7 @@ const matchJobsForStudent = (studentSkills, projects) => {
     .sort((a, b) => b.matchScore - a.matchScore);
 };
 
-// ---------- Risk Detection (Member 2 AI) ----------
+// ---------- Risk Detection ----------
 // تحليل نصي بسيط لمستوى خطورة نزاع بناءً على كلمات مفتاحية
 const RISK_KEYWORDS = {
   high: ['احتيال', 'سرقة', 'تهديد', 'ابتزاز', 'نصب'],
@@ -126,7 +126,7 @@ const assessDisputeRisk = (reasonText) => {
   return { riskLevel: 'low', notes: 'نزاع بسيط، غالبًا قابل للحل السريع' };
 };
 
-// ---------- AI Quality Gate (Member 3 AI) ----------
+// ---------- AI Quality Gate ----------
 // بوابة جودة أوسع من analyzeCodeQuality: بتضيف فحص أمان مبدئي (Security) فوق فحص الجودة
 const SECURITY_PATTERNS = [
   { pattern: /eval\s*\(/, label: 'استخدام eval() خطر أمني محتمل' },
@@ -156,7 +156,7 @@ const aiQualityGate = (codeText) => {
   };
 };
 
-// ---------- Market Predictor (Member 3 AI) ----------
+// ---------- Market Predictor ----------
 // بيتوقع اتجاهات السوق بناءً على تكرار المهارات في المشاريع المفتوحة (بيانات حقيقية من المنصة)
 const predictMarketTrends = (topSkills = []) => {
   // topSkills: [{ skill, demandCount }] جاي من analytics.service
@@ -170,7 +170,7 @@ const predictMarketTrends = (topSkills = []) => {
   }));
 };
 
-// ---------- AI-Jury (Member 3 AI) ----------
+// ---------- AI-Jury ----------
 // يحلل بيانات النزاع (سبب النزاع + عدد الأدلة المقدمة من كل طرف) ويقترح توصية أولية
 const getAIJuryRecommendation = ({ reason, raiserEvidenceCount = 0, defendantEvidenceCount = 0 }) => {
   const risk = assessDisputeRisk(reason);
