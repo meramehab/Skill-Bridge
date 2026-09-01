@@ -1,28 +1,56 @@
-import { api } from './api'
+/**
+ * @file payment.service.js
+ * @description Service for Escrow payment creation, confirmation, and release.
+ */
+import { USE_MOCK } from "../config/featureFlags";
+import { apiClient } from "../lib/apiClient";
+import { simulateNetworkDelay } from "../utils/asyncUtils";
 
 export const paymentService = {
   async createPayment(projectId, amount) {
-    const response = await api.post('/payment/create', { projectId, amount })
-    return response.data
+    if (USE_MOCK?.marketplace ?? true) {
+      await simulateNetworkDelay(500);
+      return { success: true, paymentId: `pay-${Date.now()}`, projectId, amount, status: "held_in_escrow" };
+    }
+    const { data } = await apiClient.post("/payment/create", { projectId, amount });
+    return data;
   },
 
   async confirmPayment(paymentId) {
-    const response = await api.post(`/payment/confirm/${paymentId}`)
-    return response.data
+    if (USE_MOCK?.marketplace ?? true) {
+      await simulateNetworkDelay(400);
+      return { success: true, paymentId, status: "confirmed" };
+    }
+    const { data } = await apiClient.post(`/payment/confirm/${paymentId}`);
+    return data;
   },
 
   async getPaymentStatus(paymentId) {
-    const response = await api.get(`/payment/status/${paymentId}`)
-    return response.data
+    if (USE_MOCK?.marketplace ?? true) {
+      await simulateNetworkDelay(300);
+      return { paymentId, status: "completed" };
+    }
+    const { data } = await apiClient.get(`/payment/status/${paymentId}`);
+    return data;
   },
 
   async releasePayment(projectId) {
-    const response = await api.post(`/payment/release/${projectId}`)
-    return response.data
+    if (USE_MOCK?.marketplace ?? true) {
+      await simulateNetworkDelay(400);
+      return { success: true, projectId, status: "released" };
+    }
+    const { data } = await apiClient.post(`/payment/release/${projectId}`);
+    return data;
   },
 
   async getTransactionHistory() {
-    const response = await api.get('/payment/history')
-    return response.data
-  },
-}
+    if (USE_MOCK?.marketplace ?? true) {
+      await simulateNetworkDelay(300);
+      return [];
+    }
+    const { data } = await apiClient.get("/payment/history");
+    return data;
+  }
+};
+
+export default paymentService;

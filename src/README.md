@@ -1,10 +1,10 @@
 # 🚀 SkillBridge 2.0
 
-** منصة التأهيل الأكاديمي والعمل الحر للطلاب الجامعيين و الخرجيين**
+**منصة التأهيل الأكاديمي والعمل الحر للطلاب الجامعيين والخريجين**
 
 تُأهّل · تُوثّق · تُوظّف — في منصة واحدة
 
---- 
+---
 
 ## 📋 عن المشروع
 
@@ -36,50 +36,21 @@ SkillBridge 2.0 هي منصة متكاملة للطلاب الجامعيين ت�
 
 | المكون | التقنية | المسؤول |
 |--------|---------|---------|
-| **Frontend** | Vue.js 3 + Tailwind CSS | سارة + محمد وليد + ميرام |
+| **Frontend** | React / Next.js + Tailwind CSS | سارة + محمد وليد + ميرام |
 | **Backend** | Node.js / NestJS | حازم |
 | **Database** | PostgreSQL | حازم |
 | **AI** | Gemini / OpenAI API | محمود أمارة |
 | **Payments** | Paymob / Fawry | حازم + ميرام |
-| **State Management** | Pinia | ميرام |
+| **State Management** | React Context + Custom Hooks | ميرام |
 
 ---
 
-## 📂 تقسيم العمل
+## 📂 هيكل المشروع (App Router)
 
-### 🎨 **سارة (UI/UX Designer)**
-- تصميم جميع الصفحات في Figma
-- نظام الألوان والخطوط
-- Brand Guidelines
-- تجربة المستخدم
-
-### 💻 **محمد وليد (Frontend Developer)**
-- تنفيذ الصفحات الثابتة
-- المكونات المشتركة (Components)
-- تحويل تصاميم سارة إلى كود
-- تحسين الأداء
-
-### 🧠 **ميرام (Frontend Lead)**
-- هيكل المشروع
-- State Management (Pinia)
-- ربط الـ API
-- تكامل الـ AI
-- مراجعة الكود
-
-### ⚙️ **حازم (Backend Developer)**
-- تطوير الـ REST API
-- قاعدة البيانات (PostgreSQL)
-- نظام المصادقة (JWT)
-- نظام الدفع (Escrow)
-- توثيق الـ API
-
-### 🤖 **محمود امارة (AI/ML Engineer)**
-- تحليل السيرة الذاتية (CV)
-- تقييم المهارات
-- نظام التوصيات
-- AI Team Matching
-- نماذج التعلم الآلي
-
----
-
-## 📂 هيكل المشروع
+- `src/app/` — صفحات وتوجيهات Next.js App Router.
+- `src/views/logic/` — المكونات المنطقية للصفحات (Logic Views).
+- `src/hooks/` — الـ React Custom Hooks لإدارة الحالة والتفاعل.
+- `src/services/` — خدمات الربط مع الـ API والـ AI والـ Auth.
+- `src/context/` — سياق المصادقة `AuthContext`.
+- `src/components/contracts/` — عقود المكونات المشتركة.
+- `src/lib/` — عميل الـ HTTP والبيانات التجريبية (Mock Data).
