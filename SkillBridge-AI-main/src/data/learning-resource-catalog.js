@@ -1,0 +1,42 @@
+function createResource({ id, skill, level, title, type, estimatedHours }) {
+  return {
+    id,
+    skill,
+    level,
+    title,
+    provider: null,
+    type,
+    estimatedHours,
+    free: true,
+    url: null,
+  };
+}
+
+export const learningResourceCatalog = [
+  createResource({ id: "sql-beginner-practice", skill: "SQL", level: "beginner", title: "SQL Query Foundations Practice", type: "practice", estimatedHours: 8 }),
+  createResource({ id: "python-beginner-project", skill: "Python", level: "beginner", title: "Python Foundations Project", type: "project", estimatedHours: 10 }),
+  createResource({ id: "power-bi-beginner-project", skill: "Power BI", level: "beginner", title: "Power BI Dashboard Foundations Project", type: "project", estimatedHours: 8 }),
+  createResource({ id: "excel-beginner-practice", skill: "Excel", level: "beginner", title: "Excel Data Analysis Foundations Practice", type: "practice", estimatedHours: 6 }),
+  createResource({ id: "git-beginner-practice", skill: "Git", level: "beginner", title: "Git Version Control Foundations Practice", type: "practice", estimatedHours: 4 }),
+  createResource({ id: "javascript-beginner-project", skill: "JavaScript", level: "beginner", title: "JavaScript Foundations Project", type: "project", estimatedHours: 10 }),
+  createResource({ id: "html-beginner-project", skill: "HTML", level: "beginner", title: "Semantic HTML Foundations Project", type: "project", estimatedHours: 5 }),
+  createResource({ id: "css-beginner-project", skill: "CSS", level: "beginner", title: "CSS Layout Foundations Project", type: "project", estimatedHours: 7 }),
+  createResource({ id: "react-beginner-project", skill: "React", level: "beginner", title: "React Component Foundations Project", type: "project", estimatedHours: 10 }),
+  createResource({ id: "react-intermediate-project", skill: "React", level: "intermediate", title: "React State and Data Flow Project", type: "project", estimatedHours: 12 }),
+  createResource({ id: "responsive-design-beginner-project", skill: "Responsive Design", level: "beginner", title: "Responsive Interface Practice Project", type: "project", estimatedHours: 6 }),
+  createResource({ id: "server-programming-beginner-project", skill: "Server-side Programming", level: "beginner", title: "Server-side Programming Foundations Project", type: "project", estimatedHours: 12 }),
+  createResource({ id: "apis-beginner-project", skill: "APIs", level: "beginner", title: "REST API Foundations Project", type: "project", estimatedHours: 8 }),
+  createResource({ id: "databases-beginner-practice", skill: "Databases", level: "beginner", title: "Database Modeling Foundations Practice", type: "practice", estimatedHours: 8 }),
+  createResource({ id: "auth-security-beginner-practice", skill: "Authentication and Security", level: "beginner", title: "Authentication and Access Control Practice", type: "practice", estimatedHours: 7 }),
+  createResource({ id: "testing-debugging-beginner-practice", skill: "Testing and Debugging", level: "beginner", title: "Testing and Debugging Foundations Practice", type: "practice", estimatedHours: 6 }),
+  createResource({ id: "programming-fundamentals-beginner-practice", skill: "Programming Fundamentals", level: "beginner", title: "Programming Fundamentals Practice", type: "practice", estimatedHours: 10 }),
+  createResource({ id: "programming-language-beginner-project", skill: "Programming Language", level: "beginner", title: "Programming Language Foundations Project", type: "project", estimatedHours: 10 }),
+  createResource({ id: "problem-solving-beginner-practice", skill: "Problem Solving", level: "beginner", title: "Structured Problem Solving Practice", type: "practice", estimatedHours: 8 }),
+  createResource({ id: "testing-beginner-practice", skill: "Testing", level: "beginner", title: "Software Testing Foundations Practice", type: "practice", estimatedHours: 7 }),
+  createResource({ id: "software-design-beginner-project", skill: "Software Design", level: "beginner", title: "Software Design Foundations Project", type: "project", estimatedHours: 10 }),
+  createResource({ id: "machine-learning-beginner-project", skill: "Machine Learning", level: "beginner", title: "Machine Learning Foundations Project", type: "project", estimatedHours: 12 }),
+  createResource({ id: "machine-learning-intermediate-project", skill: "Machine Learning", level: "intermediate", title: "Applied Machine Learning Evaluation Project", type: "project", estimatedHours: 16 }),
+  createResource({ id: "data-analysis-beginner-project", skill: "Data Analysis", level: "beginner", title: "Data Analysis Foundations Project", type: "project", estimatedHours: 10 }),
+  createResource({ id: "statistics-beginner-practice", skill: "Statistics", level: "beginner", title: "Statistics Foundations Practice", type: "practice", estimatedHours: 8 }),
+  createResource({ id: "model-evaluation-beginner-practice", skill: "Model Evaluation", level: "beginner", title: "Model Evaluation Foundations Practice", type: "practice", estimatedHours: 8 }),
+];

@@ -1,0 +1,33 @@
+{
+  "personalInfo": {
+    "name": "Lina Kareem",
+    "email": "lina.kareem@example.com",
+    "phone": "  ",
+    "location": " Cairo "
+  },
+  "skills": [
+    "JavaScript",
+    " React ",
+    "HTML",
+    "CSS",
+    "Git",
+    " javascript "
+  ],
+  "education": [
+    {
+      "institution": "Future Tech University",
+      "degree": "Bachelor of Science",
+      "field": "Computer Science",
+      "startDate": "2022",
+      "endDate": "2026"
+    }
+  ],
+  "experience": [],
+  "projects": [
+    {
+      "name": "Portfolio Website",
+      "description": "Built a personal portfolio website to showcase projects and frontend skills.",
+      "technologies": ["JavaScript", "React", "HTML", "CSS", "Git"]
+    }
+  ]
+}

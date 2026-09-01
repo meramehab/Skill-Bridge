@@ -1,0 +1,35 @@
+{
+  "personalInfo": {
+    "name": "Salma Nabil",
+    "email": "salma.nabil@example.com",
+    "phone": null,
+    "location": "Cairo"
+  },
+  "skills": [
+    "SQL",
+    "Python"
+  ],
+  "education": [
+    {
+      "institution": "Future Tech University",
+      "degree": "Bachelor of Science",
+      "field": "Computer Science",
+      "startDate": "2022",
+      "endDate": "2026"
+    }
+  ],
+  "experience": [],
+  "projects": [
+    {
+      "name": "Student Data Dashboard",
+      "description": "Built a simple project to explore student data trends with SQL and Python.",
+      "technologies": [
+        "SQL",
+        "Python"
+      ]
+    }
+  ],
+  "suggestedRoles": [],
+  "summary": "",
+  "profileSource": "manual"
+}

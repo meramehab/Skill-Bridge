@@ -1,0 +1,40 @@
+{
+  "personalInfo": {
+    "name": "Maya Kareem",
+    "email": "maya.kareem@example.com",
+    "phone": null,
+    "location": "Cairo"
+  },
+  "skills": [
+    "Python",
+    "SQL",
+    "Power BI",
+    "Excel",
+    "Git"
+  ],
+  "education": [
+    {
+      "institution": "Future Tech University",
+      "degree": "Bachelor of Science",
+      "field": "Computer Science",
+      "startDate": "2022",
+      "endDate": "2026"
+    }
+  ],
+  "experience": [],
+  "projects": [
+    {
+      "name": "Sales Dashboard Project",
+      "description": "Built a dashboard to track sales trends, revenue summaries, and business insights using Python, SQL, and Power BI.",
+      "technologies": [
+        "Python",
+        "SQL",
+        "Power BI",
+        "Excel"
+      ]
+    }
+  ],
+  "suggestedRoles": [],
+  "summary": "",
+  "profileSource": "manual"
+}

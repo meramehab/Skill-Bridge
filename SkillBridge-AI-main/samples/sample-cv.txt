@@ -1,0 +1,18 @@
+Maya Hassan
+maya.hassan@example.com
+
+Profile
+Recent Computer Science graduate interested in data analysis and business reporting.
+
+Education
+Bachelor of Science in Computer Science
+Nile Valley University
+2022 - 2026
+
+Skills
+Python, SQL, Power BI, Excel, Git
+
+Projects
+Sales Dashboard Project
+Built a sales dashboard to track monthly revenue, regional performance, and product trends.
+Technologies: Python, SQL, Power BI, Excel

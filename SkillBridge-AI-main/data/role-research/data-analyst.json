@@ -1,0 +1,2076 @@
+{
+  "id": "data-analyst",
+  "name": "Data Analyst",
+  "aliases": [
+    "Data Analyst",
+    "Business Intelligence Analyst",
+    "Junior Data Analyst",
+    "Analytics Specialist",
+    "Reporting Analyst"
+  ],
+  "description": "Collects, processes, and performs statistical analyses on large datasets; creates visualizations and reports that help organizations make data-driven decisions.",
+  "experienceLevel": "entry-level",
+  "canonicalOccupation": "Operations Research Analysts (15-2031.00) — closest authoritative O*NET SOC; \"Data Analyst\" has no standalone O*NET-SOC code.",
+  "typicalTasks": [
+    "Formulate mathematical or simulation models of problems, relating constants and variables, restrictions, alternatives, conflicting objectives, and their numerical parameters.",
+    "Perform validation and testing of models to ensure adequacy, and reformulate models, as necessary.",
+    "Collaborate with senior managers and decision makers to identify and solve a variety of problems and to clarify management objectives.",
+    "Present the results of mathematical modeling and data analysis to management or other end users.",
+    "Collaborate with others in the organization to ensure successful implementation of chosen problem solutions.",
+    "Analyze information obtained from management to conceptualize and define operational problems.",
+    "Study and analyze information about alternative courses of action to determine which plan will offer the best outcomes.",
+    "Prepare management reports defining and evaluating problems and recommending solutions.",
+    "Define data requirements, and gather and validate information, applying judgment and statistical tests.",
+    "Observe the current system in operation, and gather and analyze information about each of the component problems, using a variety of sources.",
+    "Break systems into their components, assign numerical values to each component, and examine the mathematical relationships between them.",
+    "Design, conduct, and evaluate experimental operational models in cases where models cannot be developed from existing data."
+  ],
+  "knowledgeAreas": [
+    "Mathematics",
+    "Computers and Electronics",
+    "English Language",
+    "Engineering and Technology",
+    "Administration and Management",
+    "Education and Training",
+    "Economics and Accounting",
+    "Geography",
+    "Sociology and Anthropology",
+    "Public Safety and Security",
+    "History and Archeology",
+    "Philosophy and Theology"
+  ],
+  "coreSkills": [
+    {
+      "name": "Communication",
+      "aliases": [
+        "Communication",
+        "communicate",
+        "communication skills"
+      ],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": 77.6,
+      "authoritativeSupport": [],
+      "jobPostingCount": 38,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 77.6% across 49 postings"
+      ]
+    },
+    {
+      "name": "Teamwork",
+      "aliases": [
+        "Teamwork",
+        "collaborat",
+        "coordinate"
+      ],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": 75.5,
+      "authoritativeSupport": [],
+      "jobPostingCount": 37,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 75.5% across 49 postings"
+      ]
+    },
+    {
+      "name": "SQL",
+      "aliases": [
+        "SQL",
+        "Structured Query Language"
+      ],
+      "category": "database",
+      "requirementType": "required",
+      "marketFrequency": 44.9,
+      "authoritativeSupport": [],
+      "jobPostingCount": 22,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 44.9% across 49 postings"
+      ]
+    },
+    {
+      "name": "Excel",
+      "aliases": [
+        "Microsoft Excel",
+        "use spreadsheets software"
+      ],
+      "category": "tool",
+      "requirementType": "required",
+      "marketFrequency": 28.6,
+      "authoritativeSupport": [
+        "O*NET 27.2",
+        "ESCO optional"
+      ],
+      "jobPostingCount": 14,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 28.6% across 49 postings",
+        "O*NET 27.2 technology skill",
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "Python",
+      "aliases": [
+        "Python (computer programming)"
+      ],
+      "category": "programming-language",
+      "requirementType": "required",
+      "marketFrequency": 20.4,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 10,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 20.4% across 49 postings",
+        "O*NET 27.2 technology skill"
+      ]
+    },
+    {
+      "name": "AWS",
+      "aliases": [
+        "AWS",
+        "Amazon Web Services",
+        "Amazon Web Services AWS CloudFormation"
+      ],
+      "category": "cloud",
+      "requirementType": "required",
+      "marketFrequency": 20.4,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 10,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 20.4% across 49 postings",
+        "O*NET 27.2 technology skill"
+      ]
+    },
+    {
+      "name": "Active Learning",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "beginner",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Active Listening",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "beginner",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Complex Problem Solving",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Coordination",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Critical Thinking",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "beginner",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Equipment Maintenance",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Equipment Selection",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Installation",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Instructing",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Judgment and Decision Making",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Learning Strategies",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Management of Financial Resources",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Management of Material Resources",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Management of Personnel Resources",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Mathematics",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Monitoring",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Negotiation",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Operation and Control",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Operations Analysis",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Operations Monitoring",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Persuasion",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Programming",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Quality Control Analysis",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Reading Comprehension",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "beginner",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Repairing",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Science",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Service Orientation",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Social Perceptiveness",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Speaking",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "beginner",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Systems Analysis",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Systems Evaluation",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Technology Design",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Time Management",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Troubleshooting",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    },
+    {
+      "name": "Writing",
+      "aliases": [],
+      "category": "soft-skill",
+      "requirementType": "required",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "beginner",
+      "evidence": [
+        "O*NET 27.2 essential/transferable occupational skill"
+      ]
+    }
+  ],
+  "importantSkills": [
+    {
+      "name": "REST API",
+      "aliases": [
+        "REST",
+        "RESTful",
+        "REST API",
+        "web programming",
+        "API"
+      ],
+      "category": "knowledge",
+      "requirementType": "preferred",
+      "marketFrequency": 38.8,
+      "authoritativeSupport": [],
+      "jobPostingCount": 19,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 38.8% across 49 postings"
+      ]
+    },
+    {
+      "name": "Agile",
+      "aliases": [
+        "Agile",
+        "Scrum",
+        "Agile project management"
+      ],
+      "category": "tool",
+      "requirementType": "preferred",
+      "marketFrequency": 22.4,
+      "authoritativeSupport": [],
+      "jobPostingCount": 11,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 22.4% across 49 postings"
+      ]
+    },
+    {
+      "name": "Looker",
+      "aliases": [
+        "Looker",
+        "Google Looker Analytics"
+      ],
+      "category": "tool",
+      "requirementType": "preferred",
+      "marketFrequency": 20.4,
+      "authoritativeSupport": [],
+      "jobPostingCount": 10,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 20.4% across 49 postings"
+      ]
+    },
+    {
+      "name": "Tableau",
+      "aliases": [
+        "Tableau"
+      ],
+      "category": "tool",
+      "requirementType": "preferred",
+      "marketFrequency": 18.4,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 9,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 18.4% across 49 postings",
+        "O*NET 27.2 technology skill"
+      ]
+    },
+    {
+      "name": "Machine Learning",
+      "aliases": [
+        "Machine Learning",
+        "ML",
+        "utilise machine learning",
+        "principles of artificial intelligence"
+      ],
+      "category": "knowledge",
+      "requirementType": "preferred",
+      "marketFrequency": 16.3,
+      "authoritativeSupport": [],
+      "jobPostingCount": 8,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 16.3% across 49 postings"
+      ]
+    },
+    {
+      "name": "R",
+      "aliases": [
+        "R"
+      ],
+      "category": "programming-language",
+      "requirementType": "preferred",
+      "marketFrequency": 14.3,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 7,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 14.3% across 49 postings",
+        "O*NET 27.2 technology skill"
+      ]
+    },
+    {
+      "name": "Google Cloud",
+      "aliases": [
+        "Google Cloud",
+        "GCP",
+        "Google Cloud software"
+      ],
+      "category": "cloud",
+      "requirementType": "preferred",
+      "marketFrequency": 14.3,
+      "authoritativeSupport": [],
+      "jobPostingCount": 7,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 14.3% across 49 postings"
+      ]
+    },
+    {
+      "name": "Problem Solving",
+      "aliases": [
+        "Problem Solving",
+        "problem-solving",
+        "Complex Problem Solving"
+      ],
+      "category": "soft-skill",
+      "requirementType": "preferred",
+      "marketFrequency": 12.2,
+      "authoritativeSupport": [],
+      "jobPostingCount": 6,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 12.2% across 49 postings"
+      ]
+    },
+    {
+      "name": "Azure",
+      "aliases": [
+        "Azure",
+        "Microsoft Azure"
+      ],
+      "category": "cloud",
+      "requirementType": "preferred",
+      "marketFrequency": 12.2,
+      "authoritativeSupport": [],
+      "jobPostingCount": 6,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 12.2% across 49 postings"
+      ]
+    },
+    {
+      "name": "Power BI",
+      "aliases": [
+        "Microsoft Power BI",
+        "PowerBI",
+        "Power BI"
+      ],
+      "category": "tool",
+      "requirementType": "preferred",
+      "marketFrequency": 12.2,
+      "authoritativeSupport": [],
+      "jobPostingCount": 6,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 12.2% across 49 postings"
+      ]
+    },
+    {
+      "name": "Data Visualization",
+      "aliases": [
+        "Data Visualization",
+        "data visuali",
+        "visual presentation techniques",
+        "deliver visual presentation of data"
+      ],
+      "category": "knowledge",
+      "requirementType": "preferred",
+      "marketFrequency": 10.2,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 5,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 10.2% across 49 postings",
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "dbt",
+      "aliases": [
+        "dbt"
+      ],
+      "category": "tool",
+      "requirementType": "preferred",
+      "marketFrequency": 10.2,
+      "authoritativeSupport": [],
+      "jobPostingCount": 5,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 10.2% across 49 postings"
+      ]
+    },
+    {
+      "name": "Airflow",
+      "aliases": [
+        "Airflow",
+        "Apache Airflow"
+      ],
+      "category": "tool",
+      "requirementType": "preferred",
+      "marketFrequency": 10.2,
+      "authoritativeSupport": [],
+      "jobPostingCount": 5,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 10.2% across 49 postings"
+      ]
+    },
+    {
+      "name": "Statistics",
+      "aliases": [
+        "Statistics",
+        "statistical",
+        "apply statistical analysis techniques",
+        "execute analytical mathematical calculations"
+      ],
+      "category": "knowledge",
+      "requirementType": "preferred",
+      "marketFrequency": 10.2,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 5,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 10.2% across 49 postings",
+        "ESCO essential"
+      ]
+    }
+  ],
+  "optionalSkills": [
+    {
+      "name": "HTML",
+      "aliases": [
+        "HTML",
+        "HTML5",
+        "use markup languages"
+      ],
+      "category": "programming-language",
+      "requirementType": "contextual",
+      "marketFrequency": 8.2,
+      "authoritativeSupport": [],
+      "jobPostingCount": 4,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 8.2% across 49 postings"
+      ]
+    },
+    {
+      "name": "Oracle Database",
+      "aliases": [
+        "Oracle",
+        "Oracle Database"
+      ],
+      "category": "database",
+      "requirementType": "contextual",
+      "marketFrequency": 8.2,
+      "authoritativeSupport": [],
+      "jobPostingCount": 4,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 8.2% across 49 postings"
+      ]
+    },
+    {
+      "name": "Snowflake",
+      "aliases": [
+        "Snowflake"
+      ],
+      "category": "database",
+      "requirementType": "contextual",
+      "marketFrequency": 8.2,
+      "authoritativeSupport": [],
+      "jobPostingCount": 4,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 8.2% across 49 postings"
+      ]
+    },
+    {
+      "name": "ETL",
+      "aliases": [
+        "ETL"
+      ],
+      "category": "knowledge",
+      "requirementType": "contextual",
+      "marketFrequency": 6.1,
+      "authoritativeSupport": [],
+      "jobPostingCount": 3,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 6.1% across 49 postings"
+      ]
+    },
+    {
+      "name": "Git",
+      "aliases": [
+        "Git",
+        "GitHub",
+        "GitLab",
+        "version control"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 6.1,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 3,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 6.1% across 49 postings",
+        "O*NET 27.2 technology skill"
+      ]
+    },
+    {
+      "name": "Jira",
+      "aliases": [
+        "Jira",
+        "Atlassian JIRA"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 6.1,
+      "authoritativeSupport": [],
+      "jobPostingCount": 3,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 6.1% across 49 postings"
+      ]
+    },
+    {
+      "name": "CSS",
+      "aliases": [
+        "CSS",
+        "CSS3",
+        "style sheet languages",
+        "Sass",
+        "LESS"
+      ],
+      "category": "programming-language",
+      "requirementType": "contextual",
+      "marketFrequency": 4.1,
+      "authoritativeSupport": [],
+      "jobPostingCount": 2,
+      "targetLevel": "beginner",
+      "evidence": [
+        "Market frequency 4.1% across 49 postings"
+      ]
+    },
+    {
+      "name": "Linux",
+      "aliases": [
+        "Linux",
+        "UNIX Shell"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 4.1,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 2,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 4.1% across 49 postings",
+        "O*NET 27.2 technology skill"
+      ]
+    },
+    {
+      "name": "NLP",
+      "aliases": [
+        "NLP",
+        "Natural Language Processing"
+      ],
+      "category": "knowledge",
+      "requirementType": "contextual",
+      "marketFrequency": 4.1,
+      "authoritativeSupport": [],
+      "jobPostingCount": 2,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 4.1% across 49 postings"
+      ]
+    },
+    {
+      "name": "Java",
+      "aliases": [
+        "Java",
+        "Java (computer programming)"
+      ],
+      "category": "programming-language",
+      "requirementType": "contextual",
+      "marketFrequency": 4.1,
+      "authoritativeSupport": [],
+      "jobPostingCount": 2,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 4.1% across 49 postings"
+      ]
+    },
+    {
+      "name": "Terraform",
+      "aliases": [
+        "Terraform",
+        "IBM Terraform"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 4.1,
+      "authoritativeSupport": [],
+      "jobPostingCount": 2,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 4.1% across 49 postings"
+      ]
+    },
+    {
+      "name": "Data Warehousing",
+      "aliases": [
+        "Data Warehouse",
+        "Warehousing"
+      ],
+      "category": "knowledge",
+      "requirementType": "contextual",
+      "marketFrequency": 4.1,
+      "authoritativeSupport": [],
+      "jobPostingCount": 2,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 4.1% across 49 postings"
+      ]
+    },
+    {
+      "name": "Ruby",
+      "aliases": [
+        "Ruby (computer programming)"
+      ],
+      "category": "programming-language",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "Pandas",
+      "aliases": [
+        "pandas"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "NumPy",
+      "aliases": [
+        "NumPy"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "Deep Learning",
+      "aliases": [
+        "Deep Learning",
+        "deep learning",
+        "artificial neural networks"
+      ],
+      "category": "knowledge",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "Docker",
+      "aliases": [
+        "Docker"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "Kubernetes",
+      "aliases": [
+        "Kubernetes",
+        "K8s"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "Apache Spark",
+      "aliases": [
+        "Spark",
+        "Apache Spark"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "Kafka",
+      "aliases": [
+        "Kafka",
+        "Apache Kafka"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "Hadoop",
+      "aliases": [
+        "Hadoop"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings",
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "TensorFlow",
+      "aliases": [
+        "TensorFlow"
+      ],
+      "category": "framework",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "PyTorch",
+      "aliases": [
+        "PyTorch"
+      ],
+      "category": "framework",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "scikit-learn",
+      "aliases": [
+        "scikit-learn",
+        "sklearn"
+      ],
+      "category": "framework",
+      "requirementType": "contextual",
+      "marketFrequency": 2.0,
+      "authoritativeSupport": [],
+      "jobPostingCount": 1,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "Market frequency 2.0% across 49 postings"
+      ]
+    },
+    {
+      "name": "unstructured data",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "interpret current data",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "documentation types",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "establish data processes",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "analyse big data",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "data quality assessment",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "information categorisation",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "manage data",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "query languages",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "handle data samples",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "integrate ICT data",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "collect ICT data",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "perform data cleansing",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "information extraction",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "Data Modeling",
+      "aliases": [
+        "data models",
+        "create data models",
+        "Data Modeling"
+      ],
+      "category": "knowledge",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "define data quality criteria",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "normalise data",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "implement data quality processes",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "information confidentiality",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "Data Mining",
+      "aliases": [
+        "Data Mining",
+        "data mining",
+        "perform data mining"
+      ],
+      "category": "knowledge",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "use databases",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "use data processing techniques",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "information structure",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "Business Intelligence",
+      "aliases": [
+        "Business Intelligence",
+        "business intelligence"
+      ],
+      "category": "knowledge",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "resource description framework query language",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO essential"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO essential"
+      ]
+    },
+    {
+      "name": "store digital data and systems",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "database",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "N1QL",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "report analysis results",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "cloud technologies",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "manage data collection systems",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "LDAP",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "manage quantitative data",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "data storage",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "information architecture",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "manage cloud data and storage",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "XQuery",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "MDX",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "LINQ",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "gather data for forensic purposes",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "online analytical processing",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "SPARQL",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "web analytics",
+      "aliases": [],
+      "category": "technical",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "ESCO optional"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "ESCO optional"
+      ]
+    },
+    {
+      "name": "SAS",
+      "aliases": [
+        "SAS",
+        "SAS language"
+      ],
+      "category": "tool",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 technology skill"
+      ]
+    },
+    {
+      "name": "C++",
+      "aliases": [
+        "C++"
+      ],
+      "category": "programming-language",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 technology skill"
+      ]
+    },
+    {
+      "name": "MySQL",
+      "aliases": [
+        "MySQL"
+      ],
+      "category": "database",
+      "requirementType": "contextual",
+      "marketFrequency": null,
+      "authoritativeSupport": [
+        "O*NET 27.2"
+      ],
+      "jobPostingCount": 0,
+      "targetLevel": "intermediate",
+      "evidence": [
+        "O*NET 27.2 technology skill"
+      ]
+    }
+  ],
+  "marketTools": [],
+  "education": [
+    "Bachelor's degree in Computer Science, Information Technology, Statistics, Mathematics, or a related quantitative field (typical entry requirement per O*NET/ESCO and market postings)",
+    "Relevant bootcamp or demonstrated project portfolio accepted by many employers for junior roles"
+  ],
+  "marketEvidence": {
+    "jobPostingsAnalyzed": 49,
+    "geographies": [
+      "Remote (global)",
+      "United States",
+      "Europe (via Arbeitnow/Jobicy remote listings)"
+    ],
+    "sources": [
+      "Jobicy public remote-jobs API",
+      "Arbeitnow job board API"
+    ],
+    "researchDate": "2026-07-18",
+    "note": "Sample skewed toward remote/junior/intern listings; not globally representative."
+  },
+  "sources": [
+    {
+      "sourceName": "O*NET 27.2 Database (U.S. Department of Labor)",
+      "sourceType": "government",
+      "url": "https://www.onetcenter.org/dl_files/database/db_27_2_text.zip",
+      "accessedAt": "2026-07-18",
+      "notes": "Authoritative occupational skills, knowledge, tasks, technology for Operations Research Analysts (15-2031.00) — closest authoritative O*NET SOC; \"Data Analyst\" has no standalone O*NET-SOC code.."
+    },
+    {
+      "sourceName": "ESCO v1.1.1 classification (European Commission)",
+      "sourceType": "government",
+      "url": "https://esco.ec.europa.eu/en/use-esco/download",
+      "accessedAt": "2026-07-18",
+      "notes": "European occupational skills framework; mirrored via tabiya-tech GitHub CSVs."
+    },
+    {
+      "sourceName": "Jobicy Remote Jobs API",
+      "sourceType": "job-posting",
+      "url": "https://jobicy.com/api/v2/remote-jobs",
+      "accessedAt": "2026-07-18",
+      "notes": "Public, no-auth job postings API; used for market skill frequency."
+    },
+    {
+      "sourceName": "Arbeitnow Job Board API",
+      "sourceType": "job-posting",
+      "url": "https://www.arbeitnow.com/api/job-board-api",
+      "accessedAt": "2026-07-18",
+      "notes": "Public job postings API; cross-validation of market demand."
+    }
+  ]
+}

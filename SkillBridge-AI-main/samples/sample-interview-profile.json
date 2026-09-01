@@ -1,0 +1,39 @@
+{
+  "personalInfo": {
+    "name": "Nour Adel",
+    "email": "nour.adel@example.com",
+    "phone": null,
+    "location": "Cairo"
+  },
+  "skills": [
+    "SQL",
+    "Python",
+    "Power BI",
+    "Excel"
+  ],
+  "education": [
+    {
+      "institution": "Future Tech University",
+      "degree": "Bachelor of Science",
+      "field": "Computer Science",
+      "startDate": "2022",
+      "endDate": "2026"
+    }
+  ],
+  "experience": [],
+  "projects": [
+    {
+      "name": "Sales Dashboard Project",
+      "description": "Built a dashboard to track regional sales, revenue trends, and business insights.",
+      "technologies": [
+        "SQL",
+        "Python",
+        "Power BI",
+        "Excel"
+      ]
+    }
+  ],
+  "suggestedRoles": [],
+  "summary": "",
+  "profileSource": "manual"
+}

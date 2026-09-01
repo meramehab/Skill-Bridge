@@ -1,0 +1,48 @@
+{
+  "generatedFor": "SkillBridge AI — Role Research Dataset",
+  "researchDate": "2026-07-18",
+  "sources": [
+    {
+      "sourceName": "O*NET 27.2 Database (U.S. Department of Labor, Employment and Training Administration)",
+      "sourceType": "government",
+      "url": "https://www.onetcenter.org/dl_files/database/db_27_2_text.zip",
+      "accessedAt": "2026-07-18",
+      "notes": "Authoritative U.S. occupational information. Provided complete skills (importance ratings), knowledge areas, task statements, technology skills (hot/in-demand flags), alternate titles, education, and job zones for canonical O*NET-SOC codes. Primary Tier-1 backbone for all roles."
+    },
+    {
+      "sourceName": "ESCO v1.1.1 Classification (European Commission)",
+      "sourceType": "government",
+      "url": "https://esco.ec.europa.eu/en/use-esco/download",
+      "accessedAt": "2026-07-18",
+      "notes": "European Skills/Competences/Qualifications and Occupations framework. Occupation + skill-relation CSVs obtained via the public tabiya-tech GitHub mirror (github.com/tabiya-tech/tabiya-esco-datasets-and-tools, datasets/tabiya/esco-v1.1.1/csv). Used for European-aligned essential/optional skill evidence. Occupation codes: data analyst 2511.3, web developer 2513.5, software developer 2512.4, data scientist 2511.4, ICT intelligent systems designer 2511.11, ICT system developer 2511.15."
+    },
+    {
+      "sourceName": "Jobicy Remote Jobs API",
+      "sourceType": "job-posting",
+      "url": "https://jobicy.com/api/v2/remote-jobs",
+      "accessedAt": "2026-07-18",
+      "notes": "Public, no-authentication job-postings API. Provided 239 raw postings (192 after de-duplication) across the five target roles. Used to compute market skill frequency (jobPostingCount / marketFrequency). Sample skews toward remote and junior/intern listings."
+    },
+    {
+      "sourceName": "Arbeitnow Job Board API",
+      "sourceType": "job-posting",
+      "url": "https://www.arbeitnow.com/api/job-board-api",
+      "accessedAt": "2026-07-18",
+      "notes": "Public job-postings API (100 listings retrieved). Used as a secondary, independent market source to cross-validate demand signals and reduce single-source bias."
+    },
+    {
+      "sourceName": "U.S. Bureau of Labor Statistics — Occupational Outlook Handbook (BLS OOH)",
+      "sourceType": "government",
+      "url": "https://www.bls.gov/ooh/",
+      "accessedAt": "2026-07-18",
+      "notes": "RESTRICTED / NOT ACCESSED. All automated requests (curl and browser) returned HTTP 403 'Access Denied' per BLS bot-usage policy. Listed here as a Tier-1 source that COULD NOT be retrieved in this session. Wage/outlook narrative therefore relies on O*NET and the web-search snippets from BLS, not on scraped OOH content. Manually accessible by a human at the URL above."
+    },
+    {
+      "sourceName": "O*NET OnLine (summary & details report pages)",
+      "sourceType": "government",
+      "url": "https://www.onetonline.org/link/summary/15-1252.00",
+      "accessedAt": "2026-07-18",
+      "notes": "Used to confirm canonical O*NET-SOC codes and to retrieve the full 35-skill Essential/Transferable skill list for Software Developers (15-1252.00) whose granular skills are not separately stored in the downloadable 27.2 text DB. Specific page accessed: 15-1252.00."
+    }
+  ]
+}

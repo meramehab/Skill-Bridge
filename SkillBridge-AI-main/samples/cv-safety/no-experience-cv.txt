@@ -1,0 +1,17 @@
+Omar Fathy
+omar.fathy@example.com
+
+Education
+Bachelor of Science in Computer Science
+City Horizon University
+2022 - 2026
+
+Skills
+Python, SQL
+
+Projects
+Student Data Insights Project
+Built a small data analysis project to explore student performance trends using Python and SQL.
+
+Experience
+No professional experience yet.
