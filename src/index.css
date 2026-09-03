@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap');
+@import 'tailwindcss';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+:root {
+  --charcoal: #1A1D24;
+  --cream: #F5E6CA;
+  --blue: #2563EB;
+  --green: #10B981;
+  --red: #DC2626;
+  --yellow: #F59E0B;
+  --blue-light: #3B82F6;
+  --green-light: #34D399;
+  --cream-dark: #E8D5B0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Mono', monospace;
+  background: var(--charcoal);
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--charcoal); }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+/* Font helpers */
+.font-display { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; }
+.font-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+.font-mono { font-family: 'Space Mono', monospace; }
+.font-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
+  50% { transform: scale(1.06); box-shadow: 0 0 0 8px rgba(37,99,235,0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(40px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes circuit-dash {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes sb-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px #10B98114, 0 0 30px #10B98133, 0 0 60px #2563EB1a; }
+  50%       { box-shadow: 0 0 0 8px #10B98120, 0 0 50px #10B98155, 0 0 90px #2563EB33; }
+}
+
+@keyframes sb-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes sb-shake {
+  0%, 100% { transform: translateX(0); }
+  18%       { transform: translateX(-7px); }
+  36%       { transform: translateX(7px); }
+  54%       { transform: translateX(-5px); }
+  72%       { transform: translateX(5px); }
+  88%       { transform: translateX(-2px); }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.float-anim {
+  animation: float 5s ease-in-out infinite;
+}
+
+.badge-hover {
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.badge-hover:hover {
+  animation: pulse-badge 0.6s ease-in-out;
+  transform: scale(1.08);
+}
+
+.panel-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.panel-hover:hover {
+  transform: scale(1.025);
+}
+.panel-hover:hover .shimmer-art {
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  background-size: 200% auto;
+  animation: shimmer 1s linear;
+}
+
+/* Confetti button */
+.btn-confetti {
+  position: relative;
+  overflow: visible;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.btn-confetti:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+.btn-confetti .confetti-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  pointer-events: none;
+  opacity: 0;
+}
+.btn-confetti:hover .confetti-dot {
+  animation: confetti-fall 0.6s ease-out forwards;
+}
+
+/* Circuit line SVG animation */
+.circuit-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: circuit-dash 2s ease forwards;
+}
+
+/* Cream paper texture */
+.cream-section {
+  background-color: var(--cream);
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Rough edge divider */
+.rough-edge-top {
+  position: relative;
+}
+.rough-edge-top::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: var(--cream);
+  clip-path: polygon(0 50%, 2% 20%, 5% 60%, 8% 30%, 11% 55%, 14% 25%, 17% 50%, 20% 35%, 23% 60%, 26% 28%, 29% 52%, 32% 22%, 35% 48%, 38% 32%, 41% 58%, 44% 28%, 47% 50%, 50% 20%, 53% 55%, 56% 30%, 59% 52%, 62% 25%, 65% 48%, 68% 35%, 71% 58%, 74% 22%, 77% 50%, 80% 32%, 83% 55%, 86% 28%, 89% 52%, 92% 22%, 95% 48%, 98% 32%, 100% 50%, 100% 100%, 0 100%);
+}
+
+/* Card border decorations */
+.card-border-blue { border: 3px solid var(--blue); }
+.card-border-green { border: 3px solid var(--green); }
+.card-border-red { border: 3px solid var(--red); }
+.card-border-yellow { border: 3px solid var(--yellow); }
+
+.tag-pill {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* ── Design tokens — dark (default) ── */
+:root {
+  --sb-logo-skill: #ffffff;
+  --sb-bg:           #0f1117;
+  --sb-card:         #13161e;
+  --sb-card2:        #0f1117;
+  --sb-inset:        #1e2330;
+  --sb-border:       #1e2330;
+  --sb-border2:      #2a2f3a;
+  --sb-text:         #ffffff;
+  --sb-text-muted:   #9ca3af;
+  --sb-text-faint:   rgba(255,255,255,0.28);
+  --sb-input-bg:     #0f1117;
+  --sb-input-border: #2a2f3a;
+}
+
+/* ── Design tokens — light (cream landing-page palette) ── */
+html.theme-light {
+  --sb-logo-skill: #0056D2;
+  --sb-bg:           #F5E6CA;
+  --sb-card:         #FFFFFF;
+  --sb-card2:        #FBF5EC;
+  --sb-inset:        #F0E8D8;
+  --sb-border:       #D4C4A8;
+  --sb-border2:      #BFB09A;
+  --sb-text:         #1A1D24;
+  --sb-text-muted:   #52504B;
+  --sb-text-faint:   rgba(26,29,36,0.38);
+  --sb-input-bg:     #FBF5EC;
+  --sb-input-border: #BFB09A;
+}
+
+/* ── Apply token cascade globally ── */
+/* Backgrounds */
+.theme-light .sb-page     { background: var(--sb-bg)    !important; }
+.theme-light .sb-card     { background: var(--sb-card)  !important; }
+.theme-light .sb-card2    { background: var(--sb-card2) !important; }
+.theme-light .sb-inset    { background: var(--sb-inset) !important; }
+
+/* Text — targeted utilities only; inline styles use var() so they respond automatically */
+.theme-light .text-white            { color: var(--sb-text)       !important; }
+.theme-light .text-white\/80        { color: rgba(26,29,36,0.80)  !important; }
+.theme-light .text-white\/70        { color: rgba(26,29,36,0.70)  !important; }
+.theme-light .text-white\/60        { color: rgba(26,29,36,0.60)  !important; }
+.theme-light .text-white\/50        { color: rgba(26,29,36,0.50)  !important; }
+.theme-light .text-white\/40        { color: rgba(26,29,36,0.40)  !important; }
+.theme-light .text-white\/30        { color: rgba(26,29,36,0.30)  !important; }
+.theme-light .text-white\/25        { color: rgba(26,29,36,0.25)  !important; }
+.theme-light .text-white\/20        { color: rgba(26,29,36,0.20)  !important; }
+.theme-light .text-gray-400         { color: var(--sb-text-muted) !important; }
+.theme-light .text-gray-500         { color: var(--sb-text-muted) !important; }
+
+/* Inputs & textareas */
+.theme-light input,
+.theme-light textarea,
+.theme-light select {
+  background:   var(--sb-input-bg)     !important;
+  color:        var(--sb-text)         !important;
+  border-color: var(--sb-input-border) !important;
+}
+.theme-light input::placeholder,
+.theme-light textarea::placeholder { color: rgba(26,29,36,0.35) !important; }
+
+/* Scrollbars */
+.theme-light ::-webkit-scrollbar-track { background: var(--sb-bg); }
+.theme-light ::-webkit-scrollbar-thumb { background: #C4B49A; border-radius: 3px; }
+
+/* Tag pills in light mode — keep pill bg readable */
+.theme-light .tag-pill { filter: none; }
+
+/* ── Targeted card/surface overrides via sb-* utility classes ── */
+/* Used on rounded card divs throughout pages */
+.sb-card-wrap  { background: var(--sb-card);  border-color: var(--sb-border);  transition: background 0.25s, border-color 0.25s; }
+.sb-card2-wrap { background: var(--sb-card2); border-color: var(--sb-border2); transition: background 0.25s, border-color 0.25s; }
+.sb-text-main  { color: var(--sb-text);       transition: color 0.25s; }
+.sb-text-muted { color: var(--sb-text-muted); transition: color 0.25s; }
+.sb-text-faint { color: var(--sb-text-faint); transition: color 0.25s; }

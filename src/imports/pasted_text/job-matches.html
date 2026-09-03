@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Matches</title>
+  <!-- استدعاء الخطوط -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #F6F3EB;
+      --card-bg: #FFFFFF;
+      --text-dark: #1E293B;
+      --accent-blue: #2563EB;
+      --accent-green: #059669;
+      --accent-orange: #D97706;
+      --border-blue: #93C5FD;
+      --border-green: #A7F3D0;
+      --badge-blue-bg: #DBEAFE;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-dark);
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Top Badge */
+    .top-pill {
+      display: inline-block;
+      background-color: var(--badge-blue-bg);
+      color: var(--accent-blue);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* Handwritten Heading */
+    .page-title {
+      font-family: 'Caveat', cursive;
+      font-size: 48px;
+      margin: 0 0 30px 0;
+      color: #111827;
+    }
+
+    .page-title span {
+      color: var(--accent-blue);
+    }
+
+    /* Job Grid */
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+    }
+
+    /* Job Card Styling */
+    .job-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      transition: transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .job-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Different Colored Borders like reference image */
+    .job-card.blue-border {
+      border: 2px solid var(--border-blue);
+    }
+    .job-card.green-border {
+      border: 2px solid var(--border-green);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .job-title {
+      font-family: 'Caveat', cursive;
+      font-size: 28px;
+      margin: 0;
+      color: #0F172A;
+    }
+
+    .company-name {
+      font-size: 14px;
+      color: #64748B;
+      margin-top: 4px;
+    }
+
+    .match-badge {
+      background-color: #ECFDF5;
+      color: var(--accent-green);
+      border: 1px solid var(--accent-green);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .job-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+
+    .tag {
+      background-color: #F1F5F9;
+      color: #475569;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .apply-btn {
+      background-color: var(--accent-blue);
+      color: #FFF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      margin-top: 12px;
+      transition: opacity 0.2s;
+    }
+
+    .apply-btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <span class="top-pill">RECOMMENDED FOR YOU</span>
+    <h1 class="page-title">Your Top <span>Job Matches</span></h1>
+
+    <div class="jobs-grid">
+      
+      <!-- Card 1 (Blue Theme) -->
+      <div class="job-card blue-border">
+        <div>
+          <div class="card-header">
+            <div>
+              <h2 class="job-title">Junior Frontend Developer</h2>
+              <div class="company-name">TechCorp Solutions</div>
+            </div>
+            <span class="match-badge">95% Match</span>
+          </div>
+          <p style="font-size: 14px; color: #475569;">Building responsive user interfaces using modern Web technologies and React framework.</p>
+          <div class="job-tags">
+            <span class="tag">Remote</span>
+            <span class="tag">Full-Time</span>
+            <span class="tag">React</span>
+          </div>
+        </div>
+        <a href="#" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- Card 2 (Green Theme) -->
+      <div class="job-card green-border">
+        <div>
+          <div class="card-header">
+            <div>
+              <h2 class="job-title">Biomedical Data Analyst</h2>
+              <div class="company-name">Health AI Labs</div>
+            </div>
+            <span class="match-badge">88% Match</span>
+          </div>
+          <p style="font-size: 14px; color: #475569;">Analyzing healthcare data pipelines and optimizing clinical models using Python & SQL.</p>
+          <div class="job-tags">
+            <span class="tag">Hybrid</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+        <a href="#" class="apply-btn" style="background-color: var(--accent-green);">Apply Now</a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
