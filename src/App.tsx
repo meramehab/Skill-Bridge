@@ -6745,7 +6745,26 @@ export default function App() {
       <Hero onDashboard={() => goToDash("Dashboard")} onSignUp={() => setModal("signup")} />
       <FeaturePanels onNavigate={goToDash} />
       <AdvancedCards onNavigate={goToDash} />
-      <Footer onNavigate={goToDash} onAdmin={() => setAdminModal(true)} />
+      <Footer onNavigate={goToDash} onAdmin={() => setAdminModal(true)} /> 
+      <ApiSection />
+    </div>
+  );
+} 
+function ApiSection() {
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts?_limit=3')
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
+
+  return (
+    <div style={{ padding: '20px', background: '#f0f4f8', marginTop: '30px', textAlign: 'center', color: '#333' }}>
+      <h3>API Test Section</h3>
+      {data.map((item) => (
+        <p key={item.id}>• {item.title}</p>
+      ))}
     </div>
   );
 }
