@@ -1,8 +1,16 @@
 /**
  * @file CVAnalysisLogicView.jsx
- * @description Logic wiring for AI CV Analysis, skill gap detection, readiness gauge, and actionable recommendations.
+ * @description Modern Figma presentation layer for the AI CV Analysis page connecting useCVAnalysis.
+ * Features drag-and-drop CV upload dropzone, readiness gauge, discovered skills, skill gap badges, and AI recommendations.
  */
 import React from "react";
+import { useCVAnalysis } from "../../hooks/useCVAnalysis";
+import { ButtonLogic as Button } from "../../components/contracts/ButtonLogic";
+import { CardLogic as Card } from "../../components/contracts/CardLogic";
+import { ProgressBarLogic as ProgressBar } from "../../components/contracts/ProgressBarLogic";
+import { BadgeLogic as Badge } from "../../components/contracts/BadgeLogic";
+import { NavbarLogic as Navbar } from "../../components/contracts/NavbarLogic";
+import { FooterLogic as Footer } from "../../components/contracts/FooterLogic";
 import {
   UploadCloud,
   FileText,
@@ -13,11 +21,16 @@ import {
   BookOpen,
   ShieldCheck,
   CheckCircle2,
-  RotateCcw
+  RotateCcw,
+  ArrowLeft
 } from "lucide-react";
-import { useCVAnalysis } from "../../hooks/useCVAnalysis";
 
-export function CVAnalysisLogicView() {
+export function CVAnalysisLogicView({
+  CardComponent = Card,
+  ButtonComponent = Button,
+  ProgressBarComponent = ProgressBar,
+  BadgeComponent = Badge
+}) {
   const {
     fileInputRef,
     selectedFile,
@@ -37,223 +50,250 @@ export function CVAnalysisLogicView() {
   } = useCVAnalysis();
 
   return (
-    <div id="cv-analysis-container" className="container mx-auto px-4 py-8 max-w-4xl">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
-          <span>📄</span>
-          تحليل السيرة الذاتية بالذكاء الاصطناعي
-        </h1>
-        <p className="text-gray-600 text-base max-w-xl mx-auto">
-          ارفع سيرتك الذاتية وسيحللها الذكاء الاصطناعي لتحديد مستوى مهاراتك ونقاط القوة والنواقص
-        </p>
-      </div>
+    <div id="cv-analysis-container" className="min-h-screen bg-[#0f1117] text-white flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
+      <Navbar />
 
-      {/* Upload Section */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-6">
-        <div
-          className={`border-2 border-dashed rounded-2xl p-10 text-center transition cursor-pointer ${
-            isDragging
-              ? "border-indigo-600 bg-indigo-50/50 scale-[1.01]"
-              : "border-gray-300 hover:border-indigo-500 hover:bg-gray-50/50"
-          }`}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          onClick={() => fileInputRef.current?.click()}
-        >
-          <div className="w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-4">
-            <UploadCloud className="w-8 h-8" />
-          </div>
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">ارفع السيرة الذاتية</h3>
-          <p className="text-gray-500 text-sm mb-3">
-            اسحب الملف هنا أو اضغط للاختيار من جهازك
-          </p>
-          <p className="text-xs text-gray-400 font-medium">
-            الملفات المدعومة: PDF, DOCX, DOC (الحد الأقصى 5MB)
-          </p>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".pdf,.docx,.doc"
-            className="hidden"
-            onChange={handleFileUpload}
-          />
-        </div>
-
-        {/* Selected File */}
-        {selectedFile && (
-          <div className="mt-4 p-4 bg-gray-50 rounded-xl flex items-center justify-between border border-gray-200">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-indigo-100 text-indigo-600">
-                <FileText className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-800 text-sm">{selectedFile.name}</p>
-                <p className="text-xs text-gray-500">{formatFileSize(selectedFile.size)}</p>
-              </div>
+      <main className="flex-1 py-12">
+        <div className="container-custom max-w-4xl space-y-8">
+          {/* Header */}
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold mb-3">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>الذكاء الاصطناعي لتحليل المهارات</span>
             </div>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                clearFile();
-              }}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition"
-              title="إزالة الملف"
+            <h1 className="text-3xl sm:text-4xl font-display font-extrabold text-white mb-2">
+              تحليل السيرة الذاتية (CV Analysis) 📄
+            </h1>
+            <p className="text-gray-400 text-sm max-w-xl mx-auto">
+              ارفع سيرتك الذاتية وسيقوم نظام الذكاء الاصطناعي باستخراج مهاراتك وتحديد الفجوات وتقديم توصيات مخصصة.
+            </p>
+          </div>
+
+          {/* ─── Upload Section ─── */}
+          <CardComponent variant="elevated" className="p-8 sm:p-10 border border-[#222634]">
+            <div
+              className={`border-2 border-dashed rounded-3xl p-10 text-center transition-all cursor-pointer ${
+                isDragging
+                  ? "border-emerald-500 bg-emerald-500/10 scale-[1.01]"
+                  : "border-[#2e3446] hover:border-emerald-500/60 bg-[#181b24]/40"
+              }`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current?.click()}
             >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-        )}
-
-        {/* Analyze Button */}
-        <button
-          id="btn-analyze-cv"
-          onClick={analyzeCV}
-          disabled={!selectedFile || isLoading}
-          className="w-full mt-6 bg-indigo-600 text-white py-3.5 px-6 rounded-xl font-semibold text-base hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-2 shadow-sm"
-        >
-          {isLoading ? (
-            <>
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-              <span>جاري التحليل واستخراج المهارات...</span>
-            </>
-          ) : (
-            <>
-              <Sparkles className="w-5 h-5" />
-              <span>تحليل السيرة الذاتية</span>
-            </>
-          )}
-        </button>
-      </div>
-
-      {/* Results */}
-      {results && (
-        <div id="cv-analysis-results" className="space-y-6 animate-fadeIn">
-          {/* Score & Readiness */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">نتيجة التحليل ومؤشر الجاهزية</h3>
-            <div className="flex flex-col sm:flex-row items-center gap-6">
-              <div className="text-center min-w-[120px]">
-                <p className="text-5xl font-extrabold text-indigo-600">{results.score}%</p>
-                <p className="text-sm font-medium text-gray-500 mt-1">مؤشر الجاهزية</p>
+              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-4">
+                <UploadCloud className="w-8 h-8" />
               </div>
-              <div className="flex-1 w-full">
-                <div className="w-full bg-gray-100 rounded-full h-3.5 overflow-hidden">
-                  <div
-                    className="bg-indigo-600 h-3.5 rounded-full transition-all duration-700 ease-out"
-                    style={{ width: `${results.score}%` }}
-                  ></div>
-                </div>
-                <div className="flex justify-between text-xs text-gray-500 mt-2 font-medium">
-                  <span>مبتدئ (0%)</span>
-                  <span className="text-indigo-600 font-bold">{results.level}</span>
-                  <span>خبير (100%)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Extracted Skills */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <span>🛠️</span>
-              المهارات المكتشفة
-            </h3>
-            <div className="space-y-4">
-              {results.skills?.map((skill) => (
-                <div key={skill.name} className="border-b border-gray-100 pb-3 last:border-0">
-                  <div className="flex justify-between items-center mb-1.5">
-                    <span className="font-semibold text-gray-800 text-sm">{skill.name}</span>
-                    <span className={`text-xs font-bold px-2 py-0.5 rounded-md ${getLevelColor(skill.level)}`}>
-                      {skill.level} ({skill.score}%)
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-                    <div
-                      className="h-2 rounded-full bg-indigo-600 transition-all duration-500"
-                      style={{ width: `${skill.score}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Missing Skills */}
-          {results.missingSkills?.length > 0 && (
-            <div className="bg-amber-50/80 border border-amber-200 rounded-2xl p-6">
-              <h3 className="text-xl font-bold text-amber-900 mb-3 flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-amber-600" />
-                المهارات الناقصة المطلوبة في سوق العمل
-              </h3>
-              <div className="flex flex-wrap gap-2 mb-3">
-                {results.missingSkills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3.5 py-1.5 bg-amber-100 text-amber-800 font-medium rounded-full text-xs"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-              <p className="text-xs text-amber-700">
-                💡 ننصح بتعلم هذه المهارات وإكمال مشاريع تطبيقية لرفع فرصة قبولك في سوق العمل الحر.
+              <h3 className="text-lg font-bold text-white mb-1">ارفع السيرة الذاتية</h3>
+              <p className="text-gray-400 text-xs sm:text-sm mb-3">
+                اسحب الملف هنا أو اضغط للاختيار من جهازك
               </p>
+              <p className="text-xs text-gray-500 font-mono">
+                الملفات المدعومة: PDF, DOCX, DOC (الحد الأقصى 5MB)
+              </p>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf,.docx,.doc"
+                className="hidden"
+                onChange={handleFileUpload}
+              />
+            </div>
+
+            {/* Selected File Card */}
+            {selectedFile && (
+              <div className="mt-5 p-4 bg-[#181b24] rounded-2xl flex items-center justify-between border border-[#262c3d] animate-fadeIn">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-emerald-500/15 text-emerald-400">
+                    <FileText className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-white text-sm">{selectedFile.name}</p>
+                    <p className="text-xs text-gray-400 font-mono">{formatFileSize(selectedFile.size)}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    clearFile();
+                  }}
+                  className="p-2 rounded-xl text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition"
+                  title="إزالة الملف"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            )}
+
+            {/* Analyze Trigger Button */}
+            <ButtonComponent
+              id="btn-analyze-cv"
+              variant="primary"
+              size="lg"
+              onClick={analyzeCV}
+              disabled={!selectedFile || isLoading}
+              isLoading={isLoading}
+              className="w-full mt-6"
+            >
+              {isLoading ? (
+                <span>جاري التحليل واستخراج المهارات بالذكاء الاصطناعي...</span>
+              ) : (
+                <>
+                  <Sparkles className="w-5 h-5 ml-1" />
+                  <span>بدء تحليل السيرة الذاتية الآن</span>
+                </>
+              )}
+            </ButtonComponent>
+          </CardComponent>
+
+          {/* ─── Results Section ─── */}
+          {results && (
+            <div id="cv-analysis-results" className="space-y-6 animate-fadeIn">
+              {/* Score & Career Readiness Gauge */}
+              <CardComponent variant="glow" className="p-8 border border-emerald-500/30">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-emerald-400" />
+                  نتيجة التحليل ومؤشر الجاهزية المهنية
+                </h3>
+                <div className="flex flex-col sm:flex-row items-center gap-8">
+                  <div className="text-center min-w-[130px]">
+                    <p className="text-5xl font-extrabold text-emerald-400 font-mono">{results.score}%</p>
+                    <p className="text-xs font-semibold text-gray-400 mt-1">مؤشر الجاهزية</p>
+                  </div>
+                  <div className="flex-1 w-full space-y-2">
+                    <ProgressBarComponent
+                      value={results.score}
+                      color="gradient"
+                      size="lg"
+                      showPercentage={false}
+                    />
+                    <div className="flex justify-between text-xs text-gray-400 font-mono font-medium">
+                      <span>مبتدئ (0%)</span>
+                      <span className="text-emerald-400 font-bold">{results.level}</span>
+                      <span>جاهز للعمل (100%)</span>
+                    </div>
+                  </div>
+                </div>
+              </CardComponent>
+
+              {/* Extracted Skills */}
+              <CardComponent variant="surface" className="p-6 border border-[#222634]">
+                <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
+                  <span>🛠️</span>
+                  المهارات المكتشفة في السيرة الذاتية
+                </h3>
+                <div className="space-y-3.5">
+                  {results.skills?.map((skill) => (
+                    <div key={skill.name} className="border-b border-[#1e2330] pb-3 last:border-0">
+                      <div className="flex justify-between items-center mb-1.5 text-xs">
+                        <span className="font-bold text-white">{skill.name}</span>
+                        <span className="font-mono text-emerald-400 font-bold">
+                          {skill.level} ({skill.score}%)
+                        </span>
+                      </div>
+                      <ProgressBarComponent
+                        value={skill.score}
+                        color="emerald"
+                        size="sm"
+                        showPercentage={false}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </CardComponent>
+
+              {/* Missing Skills */}
+              {results.missingSkills?.length > 0 && (
+                <div className="bg-amber-500/10 border border-amber-500/30 rounded-3xl p-6">
+                  <h3 className="text-base font-bold text-amber-300 mb-3 flex items-center gap-2">
+                    <AlertTriangle className="w-5 h-5 text-amber-400" />
+                    المهارات المطلوبة في سوق العمل وغير موجودة بالـ CV
+                  </h3>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {results.missingSkills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3.5 py-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 font-mono font-bold rounded-full text-xs"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-xs text-amber-200/80">
+                    💡 ننصح بتعلم هذه المهارات وإضافتها إلى مسار تعلمك لرفع فرصة قبولك في سوق العمل الحر.
+                  </p>
+                </div>
+              )}
+
+              {/* Recommendations */}
+              {results.recommendations?.length > 0 && (
+                <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-6">
+                  <h3 className="text-base font-bold text-emerald-300 mb-3 flex items-center gap-2">
+                    <Lightbulb className="w-5 h-5 text-emerald-400" />
+                    توصيات مخصصة من الذكاء الاصطناعي لتطوير ملفك
+                  </h3>
+                  <ul className="space-y-2.5 text-xs sm:text-sm text-emerald-200">
+                    {results.recommendations.map((rec, index) => (
+                      <li key={index} className="flex items-start gap-2.5">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                        <span>{rec}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Navigation Actions */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <ButtonComponent
+                  variant="primary"
+                  size="lg"
+                  className="flex-1"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.location.href = "/learning";
+                    }
+                  }}
+                >
+                  <BookOpen className="w-5 h-5 ml-1" />
+                  <span>ابدأ مسار التعلم المخصص</span>
+                </ButtonComponent>
+
+                <ButtonComponent
+                  variant="secondary"
+                  size="lg"
+                  className="flex-1"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.location.href = "/skill-verification";
+                    }
+                  }}
+                >
+                  <ShieldCheck className="w-5 h-5 ml-1 text-emerald-400" />
+                  <span>وثق مهاراتك بشهادة معتمدة</span>
+                </ButtonComponent>
+              </div>
             </div>
           )}
 
-          {/* Recommendations */}
-          {results.recommendations?.length > 0 && (
-            <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-6">
-              <h3 className="text-xl font-bold text-emerald-900 mb-3 flex items-center gap-2">
-                <Lightbulb className="w-5 h-5 text-emerald-600" />
-                توصيات مخصصة لتطوير ملفك
-              </h3>
-              <ul className="space-y-2.5">
-                {results.recommendations.map((rec, index) => (
-                  <li key={index} className="flex items-start gap-2.5 text-sm text-emerald-800">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
-                    <span>{rec}</span>
-                  </li>
-                ))}
-              </ul>
+          {/* Error Banner */}
+          {error && (
+            <div className="p-6 rounded-2xl bg-red-500/10 border border-red-500/30 text-center">
+              <p className="text-red-400 font-medium text-xs sm:text-sm mb-3">{error}</p>
+              <button
+                onClick={() => setError(null)}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-300 hover:text-white underline"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                حاول مرة أخرى
+              </button>
             </div>
           )}
-
-          {/* Navigation Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-2">
-            <a
-              href="/learning"
-              className="flex-1 bg-indigo-600 text-white py-3.5 px-6 rounded-xl font-semibold text-center hover:bg-indigo-700 transition flex items-center justify-center gap-2 shadow-sm"
-            >
-              <BookOpen className="w-5 h-5" />
-              ابدأ مسار التعلم المخصص
-            </a>
-            <a
-              href="/skill-verification"
-              className="flex-1 bg-white border border-gray-300 text-gray-800 py-3.5 px-6 rounded-xl font-semibold text-center hover:bg-gray-50 transition flex items-center justify-center gap-2 shadow-sm"
-            >
-              <ShieldCheck className="w-5 h-5 text-indigo-600" />
-              وثق مهاراتك بشهادة معتمدة
-            </a>
-          </div>
         </div>
-      )}
+      </main>
 
-      {/* Error Banner */}
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center mt-6">
-          <p className="text-red-700 font-medium text-sm mb-3">{error}</p>
-          <button
-            onClick={() => setError(null)}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-600 hover:text-red-800 underline"
-          >
-            <RotateCcw className="w-4 h-4" />
-            حاول مرة أخرى
-          </button>
-        </div>
-      )}
+      <Footer />
     </div>
   );
 }

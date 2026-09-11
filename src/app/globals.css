@@ -1,59 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary: #4f46e5;
-  --primary-dark: #4338ca;
-  --success: #10b981;
+  --charcoal: #1A1D24;
+  --cream: #F5E6CA;
+  --cream-light: #FBF5EC;
+  --cream-dark: #E8D5B0;
+  --blue: #2563EB;
+  --blue-light: #3B82F6;
+  --green: #10B981;
+  --green-light: #34D399;
+  --red: #DC2626;
+  --yellow: #F59E0B;
+  --purple: #8B5CF6;
+
+  /* Semantic Theme Tokens (Dark by default as in SkillBridge Figma design) */
+  --sb-logo-skill: #ffffff;
+  --sb-bg: #0f1117;
+  --sb-card: #13161e;
+  --sb-card2: #1e2330;
+  --sb-inset: #181b24;
+  --sb-border: #222634;
+  --sb-border2: #2e3446;
+  --sb-text: #ffffff;
+  --sb-text-muted: #9ca3af;
+  --sb-text-faint: rgba(255, 255, 255, 0.38);
+  --sb-input-bg: #13161e;
+  --sb-input-border: #2a2f3e;
+}
+
+html.theme-light {
+  --sb-logo-skill: #0056D2;
+  --sb-bg: #F5E6CA;
+  --sb-card: #FFFFFF;
+  --sb-card2: #FBF5EC;
+  --sb-inset: #F0E8D8;
+  --sb-border: #D4C4A8;
+  --sb-border2: #BFB09A;
+  --sb-text: #1A1D24;
+  --sb-text-muted: #52504B;
+  --sb-text-faint: rgba(26, 29, 36, 0.45);
+  --sb-input-bg: #FBF5EC;
+  --sb-input-border: #BFB09A;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
 }
 
 body {
-  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', 'Cairo', system-ui, -apple-system, sans-serif;
+  background-color: var(--sb-bg);
+  color: var(--sb-text);
   direction: rtl;
   text-align: right;
-  background-color: #f8fafc;
-  color: #0f172a;
+  overflow-x: hidden;
 }
 
-/* Custom Utilities */
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sb-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #2e3446;
+  border-radius: 3px;
+}
+.theme-light ::-webkit-scrollbar-thumb {
+  background: #C4B49A;
+}
+
+/* Font Classes */
+.font-display { font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif; font-weight: 800; }
+.font-title { font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif; font-weight: 700; }
+.font-mono { font-family: 'Space Mono', monospace; }
+.font-cairo { font-family: 'Cairo', sans-serif; }
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50% { transform: scale(1.06); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(40px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes circuit-dash {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes sb-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px #10B98114, 0 0 30px #10B98133, 0 0 60px #2563EB1a; }
+  50% { box-shadow: 0 0 0 8px #10B98120, 0 0 50px #10B98155, 0 0 90px #2563EB33; }
+}
+
+.float-anim {
+  animation: float 5s ease-in-out infinite;
+}
+
+.glow-box {
+  animation: sb-glow-pulse 3s ease-in-out infinite;
+}
+
+/* Circuit Line animation */
+.circuit-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: circuit-dash 2s ease forwards;
+}
+
+/* Container & Cards */
 .container-custom {
   max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
 }
 
+.sb-card {
+  background-color: var(--sb-card);
+  border: 1px solid var(--sb-border);
+  border-radius: 1.25rem;
+}
+
+.sb-card2 {
+  background-color: var(--sb-card2);
+  border: 1px solid var(--sb-border2);
+  border-radius: 1rem;
+}
+
+/* Primary and Secondary CTA Button Styles */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #4f46e5;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
   color: #ffffff;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
+  border-radius: 0.875rem;
+  font-weight: 700;
   transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
 }
 
 .btn-primary:hover {
-  background-color: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+  filter: brightness(1.05);
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
-  color: #1e293b;
-  border: 1px solid #e2e8f0;
+  gap: 0.5rem;
+  background: var(--sb-card);
+  color: var(--sb-text);
+  border: 1px solid var(--sb-border2);
   padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
+  border-radius: 0.875rem;
   font-weight: 600;
   transition: all 0.2s ease-in-out;
 }
 
 .btn-secondary:hover {
-  background-color: #f8fafc;
+  background: var(--sb-card2);
+  border-color: #10B981;
+  transform: translateY(-2px);
+}
+
+.btn-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.875rem;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.btn-blue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+  filter: brightness(1.05);
+}
+
+.tag-pill {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
