@@ -22,8 +22,8 @@ export const tokenStorage = {
 };
 
 const BASE_URL =
-  (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_API_URL) ||
-  "https://api.skillbridge.edu.eg/v1";
+  (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_BASE_URL) ||
+  "http://localhost:5000/api";
 
 /**
  * Enhanced custom HTTP client with interceptors

@@ -59,7 +59,7 @@ export async function getCurrentUser() {
     return mockGetCurrentUser();
   }
 
-  const { data } = await apiClient.get("/auth/me");
+  const { data } = await apiClient.get("/users/me");
   return data;
 }
 
