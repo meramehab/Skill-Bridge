@@ -5,17 +5,18 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 
 const AdminDashboard = () => {
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'users' | 'transactions' | 'quality'
+  const [stats, setStats] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [transactions, setTransactions] = useState([]);
   const [pendingVerifications, setPendingVerifications] = useState([]);
   const [disputes, setDisputes] = useState([]);
-  const [pendingCashPayments, setPendingCashPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [actingId, setActingId] = useState(null);
-
-  // حالة توصية لجنة التحكيم بالـ AI
-  const [juryRecommendations, setJuryRecommendations] = useState({});
-  const [juryLoadingId, setJuryLoadingId] = useState(null);
-  const [juryError, setJuryError] = useState('');
+  const [actionSuccess, setActionSuccess] = useState('');
+  const [userSearch, setUserSearch] = useState('');
+  const [roleFilter, setRoleFilter] = useState('all');
+  const [updatingUserId, setUpdatingUserId] = useState(null);
 
   // حالة بوابة فحص جودة وأمان الأكواد
   const [gateCode, setGateCode] = useState(
@@ -25,61 +26,94 @@ const AdminDashboard = () => {
   const [gateLoading, setGateLoading] = useState(false);
   const [gateError, setGateError] = useState('');
 
-  const fetchAdminData = async () => {
+  const fetchStats = async () => {
     try {
-      const [verificationsRes, disputesRes, cashRes] = await Promise.all([
+      const { data } = await api.get('/admin/stats');
+      setStats(data.data);
+    } catch (err) {
+      console.error('Failed to load admin stats', err);
+    }
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const { data } = await api.get('/admin/users', {
+        params: { search: userSearch, role: roleFilter },
+      });
+      setUsers(data.data || []);
+    } catch (err) {
+      console.error('Failed to load users', err);
+    }
+  };
+
+  const fetchTransactions = async () => {
+    try {
+      const { data } = await api.get('/admin/transactions');
+      setTransactions(data.data || []);
+    } catch (err) {
+      console.error('Failed to load transactions', err);
+    }
+  };
+
+  const fetchPendingItems = async () => {
+    try {
+      const [verificationsRes, disputesRes] = await Promise.all([
         api.get('/university/pending'),
         api.get('/disputes'),
-        api.get('/payments/vodafone-cash/pending'),
       ]);
-      setPendingVerifications(verificationsRes.data.data);
-      setDisputes(disputesRes.data.data);
-      setPendingCashPayments(cashRes.data.data);
+      setPendingVerifications(verificationsRes.data.data || []);
+      setDisputes(disputesRes.data.data || []);
     } catch (err) {
-      setError(err.response?.data?.message || 'حصل خطأ في تحميل بيانات الإدارة');
+      console.error('Failed to load pending items', err);
+    }
+  };
+
+  const loadAllData = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      await Promise.all([fetchStats(), fetchUsers(), fetchTransactions(), fetchPendingItems()]);
+    } catch (err) {
+      setError('حصل خطأ في تحميل بعض بيانات لوحة التحكم');
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchAdminData();
+    loadAllData();
   }, []);
 
-  const handleConfirmCash = async (paymentId) => {
+  useEffect(() => {
+    if (activeTab === 'users') {
+      fetchUsers();
+    }
+  }, [userSearch, roleFilter, activeTab]);
+
+  const handleRoleChange = async (userId, newRole) => {
     try {
-      setActingId(paymentId);
-      await api.put(`/payments/vodafone-cash/${paymentId}/confirm`);
-      fetchAdminData();
+      setUpdatingUserId(userId);
+      setActionSuccess('');
+      await api.patch(`/admin/users/${userId}/role`, { role: newRole });
+      setActionSuccess(`تم تغيير الصلاحية بنجاح إلى: ${newRole}`);
+      await fetchUsers();
+      await fetchStats();
     } catch (err) {
-      setError(err.response?.data?.message || 'حصل خطأ في التأكيد');
+      setError(err.response?.data?.message || 'فشل تحديث دور المستخدم');
     } finally {
-      setActingId(null);
+      setUpdatingUserId(null);
     }
   };
 
-  const handleRejectCash = async (paymentId) => {
+  const handleToggleActive = async (userId) => {
     try {
-      setActingId(paymentId);
-      await api.put(`/payments/vodafone-cash/${paymentId}/reject`);
-      fetchAdminData();
+      setUpdatingUserId(userId);
+      await api.put(`/admin/users/${userId}/toggle-active`);
+      await fetchUsers();
     } catch (err) {
-      setError(err.response?.data?.message || 'حصل خطأ في الرفض');
+      setError('فشل تغيير حالة تفعيل المستخدم');
     } finally {
-      setActingId(null);
-    }
-  };
-
-  const handleConsultJury = async (disputeId) => {
-    try {
-      setJuryLoadingId(disputeId);
-      setJuryError('');
-      const rec = await aiService.getJuryRecommendation(disputeId);
-      setJuryRecommendations((prev) => ({ ...prev, [disputeId]: rec }));
-    } catch (err) {
-      setJuryError(err.response?.data?.message || 'تعذر الحصول على توصية لجنة التحكيم الذكية');
-    } finally {
-      setJuryLoadingId(null);
+      setUpdatingUserId(null);
     }
   };
 
@@ -98,228 +132,453 @@ const AdminDashboard = () => {
     }
   };
 
+  if (loading && !stats) {
+    return (
+      <div className="flex min-h-[70vh] items-center justify-center text-white/50 text-sm">
+        جاري تهيئة لوحة تحكم الإدارة الشاملة...
+      </div>
+    );
+  }
+
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12 font-body">
-      <span className="eyebrow">لوحة تحكم الإدارة</span>
-      <h1 className="mt-2 text-2xl font-semibold">نظرة عامة وأدوات المنصة الذكية</h1>
+    <div className="min-h-screen bg-[#0B0F17] py-10 text-white">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Header Title */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-white/10 pb-6">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+              Admin Console • بوابة الإدارة العليا
+            </span>
+            <h1 className="mt-1 text-2xl md:text-3xl font-bold">لوحة تحكم المنصة المركزية</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={loadAllData}
+              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white hover:bg-white/10 transition"
+            >
+              تحديث البيانات ⟳
+            </button>
+          </div>
+        </div>
 
-      {loading && <p className="mt-6 text-sm text-muted">جاري تحميل البيانات...</p>}
-      {error && <p className="mt-6 text-sm text-danger">{error}</p>}
+        {error && (
+          <div className="mt-4 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-rose-300">
+            {error}
+          </div>
+        )}
 
-      {!loading && !error && (
-        <div className="mt-8 space-y-8">
-          <div className="grid gap-6 lg:grid-cols-2">
-            {/* طلبات كاش */}
-            <Card title="طلبات دفع فودافون كاش" eyebrow={`${pendingCashPayments.length} طلب معلّق`}>
-              {pendingCashPayments.length === 0 ? (
-                <p className="text-muted">مفيش طلبات معلّقة دلوقتي.</p>
-              ) : (
-                <ul className="space-y-4">
-                  {pendingCashPayments.map((p) => (
-                    <li key={p._id} className="border-b border-line pb-3">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="font-medium">{p.client?.fullName || p.client?.email}</span>
-                        <span className="font-semibold text-ink">{p.amount} ج.م</span>
-                      </div>
-                      <p className="mt-1 text-xs text-muted">
-                        {p.itemTitle} — رقم التحويل: {p.providerTransactionId || '—'}
-                      </p>
-                      <div className="mt-2 flex gap-2">
-                        <Button
-                          variant="accent" className="!py-1.5 !px-3 text-xs"
-                          loading={actingId === p._id}
-                          onClick={() => handleConfirmCash(p._id)}
-                        >
-                          تأكيد الاستلام
-                        </Button>
-                        <Button
-                          variant="outline" className="!py-1.5 !px-3 text-xs"
-                          loading={actingId === p._id}
-                          onClick={() => handleRejectCash(p._id)}
-                        >
-                          رفض
-                        </Button>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </Card>
+        {actionSuccess && (
+          <div className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs text-emerald-300">
+            {actionSuccess}
+          </div>
+        )}
 
-            {/* طلبات التحقق الجامعي */}
-            <Card title="طلبات التحقق الجامعي المعلّقة" eyebrow={`${pendingVerifications.length} طلب`}>
-              {pendingVerifications.length === 0 ? (
-                <p className="text-muted">مفيش طلبات معلّقة دلوقتي.</p>
-              ) : (
-                <ul className="space-y-3">
-                  {pendingVerifications.map((v) => (
-                    <li key={v._id} className="flex items-center justify-between border-b border-line pb-2">
-                      <span>{v.user?.fullName || v.user?.email}</span>
-                      <span className="text-xs text-muted">{v.method}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </Card>
+        {/* High Level KPI Metrics Cards */}
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="rounded-2xl border border-white/10 bg-[#0E131F] p-5 shadow-lg">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium text-white/50">إجمالي المستخدمين</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400 text-sm">
+                👥
+              </span>
+            </div>
+            <div className="mt-3 text-2xl font-black text-white">{stats?.totalUsers ?? 0}</div>
+            <p className="mt-1 text-[11px] text-white/40">طلاب وعملاء ومسؤولين</p>
           </div>
 
-          {/* النزاعات المفتوحة وتوصية لجنة التحكيم AI */}
-          <Card title="النزاعات المفتوحة وتوصيات لجنة التحكيم (AI-Jury)" eyebrow={`${disputes.length} نزاع مسجل`}>
-            {juryError && <p className="mb-3 text-xs text-danger">{juryError}</p>}
-            {disputes.length === 0 ? (
-              <p className="text-muted">مفيش نزاعات مفتوحة دلوقتي.</p>
-            ) : (
-              <ul className="space-y-4">
-                {disputes.map((d) => {
-                  const jury = juryRecommendations[d._id];
-                  return (
-                    <li key={d._id} className="rounded-lg border border-line p-4 space-y-3">
-                      <div className="flex flex-wrap items-center justify-between gap-2">
-                        <div>
-                          <span className="font-semibold text-ink text-sm">{d.project?.title || 'مشروع بدون عنوان'}</span>
-                          <span className="mr-2 text-xs text-muted">({d.reason || 'سبب غير محدد'})</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span
-                            className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${d.aiRiskAssessment?.riskLevel === 'high' ? 'bg-danger/10 text-danger' : 'bg-paper text-muted'
-                              }`}
-                          >
-                            الحالة: {d.status}
-                          </span>
-                          <Button
-                            variant="outline"
-                            className="!py-1 !px-2.5 text-xs"
-                            loading={juryLoadingId === d._id}
-                            onClick={() => handleConsultJury(d._id)}
-                          >
-                            ⚖️ استشارة لجنة التحكيم الذكية
-                          </Button>
-                        </div>
-                      </div>
-
-                      {/* عرض التوصية الذكية إذا تم طلبها */}
-                      {jury && (
-                        <div className="mt-3 rounded-lg border border-signal/40 bg-signal/5 p-3.5 space-y-2 text-xs">
-                          <div className="flex items-center justify-between">
-                            <span className="font-semibold text-ink flex items-center gap-1.5">
-                              <span>🤖 توصية لجنة التحكيم بالـ AI:</span>
-                            </span>
-                            <span
-                              className={`px-2 py-0.5 rounded text-[11px] font-bold ${jury.riskLevel === 'high'
-                                  ? 'bg-danger/20 text-danger'
-                                  : jury.riskLevel === 'medium'
-                                    ? 'bg-signal/20 text-ink'
-                                    : 'bg-success/20 text-success'
-                                }`}
-                            >
-                              مستوى الخطورة: {jury.riskLevel}
-                            </span>
-                          </div>
-
-                          <p className="font-medium text-charcoal leading-relaxed">{jury.recommendation}</p>
-
-                          {jury.riskNotes && (
-                            <p className="text-muted text-[11px]">ملاحظات: {jury.riskNotes}</p>
-                          )}
-
-                          {jury.requiresHumanReview && (
-                            <div className="mt-1 flex items-center gap-1.5 text-[11px] font-semibold text-danger">
-                              <span>⚠️ يتطلب مراجعة بشرية من فريق التحكيم.</span>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </Card>
-
-          {/* بوابة فحص جودة وأمان المشاريع البرمجية AI Quality Gate */}
-          <Card
-            title="بوابة جودة وأمان المشاريع البرمجية (AI Quality Gate)"
-            eyebrow="Security & Quality Audit"
-          >
-            <p className="text-xs text-muted mb-4">
-              أداة إدارية ذكية للتحقق من جودة الكود البرمجي المكتمل وخلوه من الثغرات الأمنية (Security Vulnerabilities) وحقن الأوامر والبيانات السرية المكشوفة قبل اعتماد التسليم أو النشر.
+          <div className="rounded-2xl border border-white/10 bg-[#0E131F] p-5 shadow-lg">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium text-white/50">إجمالي الإيرادات</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 text-sm">
+                💳
+              </span>
+            </div>
+            <div className="mt-3 text-2xl font-black text-emerald-400">
+              {stats?.totalRevenue ?? 0} <span className="text-sm font-normal">ج.م</span>
+            </div>
+            <p className="mt-1 text-[11px] text-white/40">
+              أرباح المنصة المقتطعة: {stats?.platformEarnings ?? 0} ج.م
             </p>
+          </div>
 
-            <textarea
-              value={gateCode}
-              onChange={(e) => setGateCode(e.target.value)}
-              rows={6}
-              className="w-full rounded-lg border border-line bg-paper/40 p-3 font-mono text-xs text-charcoal focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10"
-              placeholder="الصق كود المشروع هنا للتدقيق الأمني..."
-              dir="ltr"
-            />
+          <div className="rounded-2xl border border-white/10 bg-[#0E131F] p-5 shadow-lg">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium text-white/50">الاشتراكات بالكورسات</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 text-sm">
+                📚
+              </span>
+            </div>
+            <div className="mt-3 text-2xl font-black text-amber-400">
+              {stats?.totalEnrolledCourses ?? 0}
+            </div>
+            <p className="mt-1 text-[11px] text-white/40">
+              في {stats?.totalCoursesCount ?? 0} كورس متاح
+            </p>
+          </div>
 
-            <div className="mt-3 flex gap-3">
-              <Button
-                onClick={handleRunQualityGate}
-                loading={gateLoading}
-                variant="accent"
-                className="!py-2 text-xs"
-              >
-                🛡️ بدء التدقيق الأمني وفحص الجودة
-              </Button>
+          <div className="rounded-2xl border border-white/10 bg-[#0E131F] p-5 shadow-lg">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium text-white/50">المشاريع النشطة</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400 text-sm">
+                💼
+              </span>
+            </div>
+            <div className="mt-3 text-2xl font-black text-purple-400">{stats?.activeJobs ?? 0}</div>
+            <p className="mt-1 text-[11px] text-white/40">قيد التنفيذ والمطابقة</p>
+          </div>
+        </div>
+
+        {/* Tab Navigation */}
+        <div className="mt-8 flex border-b border-white/10 gap-2">
+          <button
+            onClick={() => setActiveTab('overview')}
+            className={`px-4 py-3 text-xs font-bold border-b-2 transition ${
+              activeTab === 'overview'
+                ? 'border-emerald-500 text-emerald-400'
+                : 'border-transparent text-white/50 hover:text-white'
+            }`}
+          >
+            نظرة عامة والطلبات المعلقة ({pendingVerifications.length + disputes.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('users')}
+            className={`px-4 py-3 text-xs font-bold border-b-2 transition ${
+              activeTab === 'users'
+                ? 'border-emerald-500 text-emerald-400'
+                : 'border-transparent text-white/50 hover:text-white'
+            }`}
+          >
+            إدارة المستخدمين والأدوار ({users.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('transactions')}
+            className={`px-4 py-3 text-xs font-bold border-b-2 transition ${
+              activeTab === 'transactions'
+                ? 'border-emerald-500 text-emerald-400'
+                : 'border-transparent text-white/50 hover:text-white'
+            }`}
+          >
+            سجل المدفوعات والـ Escrow ({transactions.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('quality')}
+            className={`px-4 py-3 text-xs font-bold border-b-2 transition ${
+              activeTab === 'quality'
+                ? 'border-emerald-500 text-emerald-400'
+                : 'border-transparent text-white/50 hover:text-white'
+            }`}
+          >
+            بوابة فحص جودة وأمان الأكواد (AI Gate)
+          </button>
+        </div>
+
+        {/* TAB 1: OVERVIEW & PENDING ITEMS */}
+        {activeTab === 'overview' && (
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* University Verifications */}
+            <div className="rounded-2xl border border-white/10 bg-[#0E131F] p-6">
+              <h3 className="text-base font-bold text-white mb-4">
+                طلبات توثيق الطلاب الجامعيين ({pendingVerifications.length})
+              </h3>
+              {pendingVerifications.length === 0 ? (
+                <p className="text-xs text-white/40">لا توجد طلبات توثيق معلقة حالياً.</p>
+              ) : (
+                <div className="space-y-3">
+                  {pendingVerifications.map((item) => (
+                    <div
+                      key={item._id}
+                      className="rounded-xl border border-white/5 bg-white/[0.02] p-4 flex items-center justify-between text-xs"
+                    >
+                      <div>
+                        <p className="font-semibold text-white">{item.fullName}</p>
+                        <p className="text-white/50">{item.university} • {item.universityEmail}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={async () => {
+                            await api.put(`/university/${item._id}/verify`, { approved: true });
+                            fetchPendingItems();
+                          }}
+                          className="rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 font-semibold hover:bg-emerald-500/30"
+                        >
+                          اعتماد
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {gateError && <p className="mt-3 text-xs text-danger">{gateError}</p>}
-
-            {gateResult && (
-              <div className="mt-5 space-y-4 border-t border-line pt-4">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex items-center gap-4">
-                    <div>
-                      <span className="text-xs text-muted block">درجة الجودة</span>
-                      <span className="text-xl font-bold text-ink">{gateResult.qualityScore}/100</span>
+            {/* Disputes */}
+            <div className="rounded-2xl border border-white/10 bg-[#0E131F] p-6">
+              <h3 className="text-base font-bold text-white mb-4">
+                النزاعات المالية المعلقة ({disputes.length})
+              </h3>
+              {disputes.length === 0 ? (
+                <p className="text-xs text-white/40">لا توجد نزاعات مفتوحة حالياً.</p>
+              ) : (
+                <div className="space-y-3">
+                  {disputes.map((d) => (
+                    <div
+                      key={d._id}
+                      className="rounded-xl border border-white/5 bg-white/[0.02] p-4 text-xs space-y-2"
+                    >
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold text-white">{d.project?.title || 'مشروع غير مسمى'}</span>
+                        <span className="text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                          {d.status}
+                        </span>
+                      </div>
+                      <p className="text-white/60">{d.reason || 'مفيش تفاصيل مضافة'}</p>
                     </div>
-                    <div>
-                      <span className="text-xs text-muted block">درجة الأمان</span>
-                      <span className="text-xl font-bold text-ink">{gateResult.securityScore}/100</span>
-                    </div>
-                  </div>
-
-                  <span
-                    className={`rounded-full px-4 py-1.5 text-xs font-bold ${gateResult.passed
-                        ? 'bg-success/15 text-success'
-                        : 'bg-danger/15 text-danger'
-                      }`}
-                  >
-                    {gateResult.passed ? 'اجتاز بوابة الجودة والأمان بنجاح ✅' : 'لم يجتز - توجد ثغرات أو ملاحظات حرجة ❌'}
-                  </span>
+                  ))}
                 </div>
+              )}
+            </div>
+          </div>
+        )}
 
-                {gateResult.securityIssues?.length > 0 && (
-                  <div className="rounded-lg border border-danger/30 bg-danger/5 p-3.5 space-y-1.5">
-                    <p className="text-xs font-bold text-danger">⚠️ الثغرات الأمنية المكتشفة (Security Issues):</p>
-                    <ul className="list-disc list-inside text-xs text-charcoal space-y-1">
-                      {gateResult.securityIssues.map((sec, i) => (
-                        <li key={i}>{sec}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {gateResult.qualityIssues?.length > 0 && (
-                  <div className="rounded-lg border border-line bg-paper/60 p-3.5 space-y-1.5">
-                    <p className="text-xs font-semibold text-ink">ملاحظات الجودة البرمجية (Quality Issues):</p>
-                    <ul className="list-disc list-inside text-xs text-muted space-y-1">
-                      {gateResult.qualityIssues.map((q, i) => (
-                        <li key={i}>{q}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+        {/* TAB 2: USERS MANAGEMENT & ROLE CHANGING */}
+        {activeTab === 'users' && (
+          <div className="mt-6 rounded-2xl border border-white/10 bg-[#0E131F] p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+              <div className="flex-1 max-w-md">
+                <input
+                  type="text"
+                  placeholder="ابحث بالاسم أو البريد الإلكتروني..."
+                  value={userSearch}
+                  onChange={(e) => setUserSearch(e.target.value)}
+                  className="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs text-white placeholder-white/30 focus:border-emerald-500 focus:outline-none"
+                />
               </div>
-            )}
-          </Card>
-        </div>
-      )}
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-white/40">تصفية حسب الدور:</span>
+                <select
+                  value={roleFilter}
+                  onChange={(e) => setRoleFilter(e.target.value)}
+                  className="rounded-xl border border-white/10 bg-[#0B0F17] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+                >
+                  <option value="all">الكل</option>
+                  <option value="student">طالب (Student)</option>
+                  <option value="client">عميل (Client)</option>
+                  <option value="admin">مسؤول (Admin)</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-right text-xs">
+                <thead>
+                  <tr className="border-b border-white/10 text-white/40">
+                    <th className="pb-3 pr-2">المستخدم</th>
+                    <th className="pb-3">البريد الإلكتروني</th>
+                    <th className="pb-3">الدور الحالي</th>
+                    <th className="pb-3">الكورسات المسجلة</th>
+                    <th className="pb-3">الحالة</th>
+                    <th className="pb-3 text-left pl-2">تعديل الدور / الإجراء</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {users.length === 0 ? (
+                    <tr>
+                      <td colSpan="6" className="py-8 text-center text-white/40">
+                        لا يوجد مستخدمين مطابقين للبحث.
+                      </td>
+                    </tr>
+                  ) : (
+                    users.map((u) => (
+                      <tr key={u._id} className="hover:bg-white/[0.01]">
+                        <td className="py-3.5 pr-2 font-medium text-white">{u.fullName}</td>
+                        <td className="py-3.5 text-white/60 font-mono text-[11px]">{u.email}</td>
+                        <td className="py-3.5">
+                          <span
+                            className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase ${
+                              u.role === 'admin'
+                                ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                                : u.role === 'client'
+                                ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
+                                : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                            }`}
+                          >
+                            {u.role}
+                          </span>
+                        </td>
+                        <td className="py-3.5 text-white/60">
+                          {u.enrolledCourses?.length || 0} كورس
+                        </td>
+                        <td className="py-3.5">
+                          <span
+                            className={`text-[10px] ${
+                              u.isActive ? 'text-emerald-400' : 'text-rose-400'
+                            }`}
+                          >
+                            {u.isActive ? 'نشط ●' : 'معطل ○'}
+                          </span>
+                        </td>
+                        <td className="py-3.5 text-left pl-2">
+                          <div className="flex items-center justify-end gap-2">
+                            <select
+                              disabled={updatingUserId === u._id}
+                              value={u.role}
+                              onChange={(e) => handleRoleChange(u._id, e.target.value)}
+                              className="rounded-lg border border-white/10 bg-black/40 px-2 py-1 text-[11px] text-white focus:border-emerald-500 focus:outline-none"
+                            >
+                              <option value="student">student</option>
+                              <option value="client">client</option>
+                              <option value="admin">admin</option>
+                            </select>
+
+                            <button
+                              onClick={() => handleToggleActive(u._id)}
+                              className={`rounded-lg px-2 py-1 text-[11px] border transition ${
+                                u.isActive
+                                  ? 'border-rose-500/30 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20'
+                                  : 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20'
+                              }`}
+                            >
+                              {u.isActive ? 'تعطيل' : 'تفعيل'}
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 3: TRANSACTIONS LOG */}
+        {activeTab === 'transactions' && (
+          <div className="mt-6 rounded-2xl border border-white/10 bg-[#0E131F] p-6">
+            <h3 className="text-base font-bold text-white mb-4">
+              سجل المدفوعات والمعاملات المالية بالكامل
+            </h3>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-right text-xs">
+                <thead>
+                  <tr className="border-b border-white/10 text-white/40">
+                    <th className="pb-3 pr-2">رقم المعاملة</th>
+                    <th className="pb-3">الدافع / المستخدم</th>
+                    <th className="pb-3">البند / الكورس / المشروع</th>
+                    <th className="pb-3">المبلغ</th>
+                    <th className="pb-3">طريقة الدفع</th>
+                    <th className="pb-3">الحالة</th>
+                    <th className="pb-3 text-left pl-2">التاريخ</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {transactions.length === 0 ? (
+                    <tr>
+                      <td colSpan="7" className="py-8 text-center text-white/40">
+                        لا توجد سجلات دفع مسجلة حتى الآن.
+                      </td>
+                    </tr>
+                  ) : (
+                    transactions.map((tx) => (
+                      <tr key={tx._id} className="hover:bg-white/[0.01]">
+                        <td className="py-3.5 pr-2 font-mono text-[11px] text-white/70">
+                          {tx.transactionId || tx.providerTransactionId || tx._id.slice(-8)}
+                        </td>
+                        <td className="py-3.5 text-white">
+                          {tx.client?.fullName || tx.userId?.fullName || 'مستخدم مجهول'}
+                        </td>
+                        <td className="py-3.5 text-white/70">
+                          {tx.course?.title || tx.project?.title || tx.itemTitle || 'شراء كورس/خدمة'}
+                        </td>
+                        <td className="py-3.5 font-bold text-emerald-400">
+                          {tx.amount} ج.م
+                        </td>
+                        <td className="py-3.5 text-white/50 text-[11px]">
+                          {tx.paymentMethod || tx.provider || 'card'}
+                        </td>
+                        <td className="py-3.5">
+                          <span
+                            className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold ${
+                              tx.paymentStatus === 'completed' || tx.status === 'completed' || tx.status === 'released'
+                                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                                : tx.status === 'failed'
+                                ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                                : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                            }`}
+                          >
+                            {tx.paymentStatus || tx.status}
+                          </span>
+                        </td>
+                        <td className="py-3.5 text-left pl-2 text-white/40 text-[10px]">
+                          {new Date(tx.createdAt).toLocaleDateString('ar-EG')}
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 4: AI QUALITY GATE */}
+        {activeTab === 'quality' && (
+          <div className="mt-6 rounded-2xl border border-white/10 bg-[#0E131F] p-6">
+            <h3 className="text-base font-bold text-white mb-2">
+              بوابة الجودة والأمان البرمجي الذكية (Security & Quality Gate)
+            </h3>
+            <p className="text-xs text-white/60 mb-4">
+              فحص شفرات المشاريع الطلابية لاكتشاف الثغرات الأمنية ومفاتيح الـ API المكشوفة وتقييم جودة الكود قبل الإفراج المالي.
+            </p>
+
+            <div className="space-y-4">
+              <textarea
+                value={gateCode}
+                onChange={(e) => setGateCode(e.target.value)}
+                rows={7}
+                dir="ltr"
+                className="w-full rounded-xl border border-white/10 bg-black/50 p-4 font-mono text-xs text-emerald-400 focus:border-emerald-500 focus:outline-none"
+              />
+
+              <div className="flex justify-end">
+                <button
+                  onClick={handleRunQualityGate}
+                  disabled={gateLoading}
+                  className="rounded-xl bg-emerald-500 px-6 py-2.5 text-xs font-bold text-black hover:bg-emerald-400 transition disabled:opacity-50"
+                >
+                  {gateLoading ? 'جاري الفحص البرمجي...' : 'تشغيل فحص الأمان والجودة 🛡️'}
+                </button>
+              </div>
+
+              {gateError && (
+                <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-rose-300">
+                  {gateError}
+                </div>
+              )}
+
+              {gateResult && (
+                <div className="mt-4 rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                  <div className="flex items-center justify-between mb-3 border-b border-white/5 pb-2">
+                    <span className="font-bold text-sm text-white">تقرير التدقيق:</span>
+                    <span
+                      className={`text-xs px-2.5 py-1 rounded-full font-bold ${
+                        gateResult.passed
+                          ? 'bg-emerald-500/20 text-emerald-300'
+                          : 'bg-rose-500/20 text-rose-300'
+                      }`}
+                    >
+                      {gateResult.passed ? 'ناجح ومطابق للمواصفات ✓' : 'تنبيهات أمنية مطلوبة ⚠'}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-white/80 leading-relaxed">{gateResult.summary}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export default AdminDashboard;
-

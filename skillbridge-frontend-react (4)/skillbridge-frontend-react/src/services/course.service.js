@@ -31,4 +31,30 @@ const enrollCourse = async (id) => {
   return data.data;
 };
 
-export default { getCourses, getCoursesForAdmin, createCourse, updateCourse, deleteCourse, enrollCourse };
+const getCourseById = async (id) => {
+  const { data } = await api.get(`/courses/${id}`);
+  return data.data;
+};
+
+const checkCourseAccess = async (id) => {
+  const { data } = await api.get(`/courses/${id}/access`);
+  return data;
+};
+
+const getCourseLessons = async (id) => {
+  const { data } = await api.get(`/courses/${id}/lessons`);
+  return data.data;
+};
+
+export default {
+  getCourses,
+  getCoursesForAdmin,
+  getCourseById,
+  checkCourseAccess,
+  getCourseLessons,
+  createCourse,
+  updateCourse,
+  deleteCourse,
+  enrollCourse,
+};
+

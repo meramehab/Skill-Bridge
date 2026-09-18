@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import courseService from '../services/course.service';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
+import CheckoutModal from '../components/common/CheckoutModal';
 
-// صفحة عامة للاستعراض والاشتراك بس - إدارة الكورسات (إضافة/تعديل/حذف) موجودة في /admin/courses (محمية للأدمن بس)
+// صفحة عامة للاستعراض والاشتراك - تدعم الدفع المباشر وعرض الدروس المحمية
 const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [enrollingId, setEnrollingId] = useState(null);
-  const [feedback, setFeedback] = useState('');
+  const [selectedCourseForCheckout, setSelectedCourseForCheckout] = useState(null);
 
   const fetchCourses = async () => {
     try {
@@ -28,25 +28,21 @@ const Courses = () => {
     fetchCourses();
   }, []);
 
-  const handleEnroll = async (courseId) => {
-    try {
-      setEnrollingId(courseId);
-      setFeedback('');
-      await courseService.enrollCourse(courseId);
-      setFeedback('تمت إضافة الكورس لمسار التعلم بتاعك ✅');
-    } catch (err) {
-      setFeedback(err.response?.data?.message || 'حصل خطأ في الإضافة');
-    } finally {
-      setEnrollingId(null);
-    }
-  };
-
   return (
     <div className="mx-auto max-w-6xl px-6 py-12">
-      <span className="eyebrow">مكتبة الكورسات</span>
-      <h1 className="mt-2 text-2xl font-semibold">الكورسات المتاحة</h1>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <span className="eyebrow">مكتبة الكورسات والمسارات</span>
+          <h1 className="mt-2 text-2xl font-bold text-white">الكورسات المتاحة للدراسة</h1>
+        </div>
+        <Link
+          to="/learning"
+          className="text-xs text-emerald-400 hover:text-emerald-300 underline font-medium"
+        >
+          الانتقال إلى مسار التعلم الخاص بي ←
+        </Link>
+      </div>
 
-      {feedback && <p className="mt-4 text-sm text-success">{feedback}</p>}
       {error && <p className="mt-4 text-sm text-danger">{error}</p>}
 
       {loading ? (
@@ -60,34 +56,52 @@ const Courses = () => {
               eyebrow={`${course.price ?? 0} ج.م`}
               title={course.title}
               footer={
-                <Link
-                  to={`/pay-course/${course._id}?amount=${course.price ?? 0}`}
-                  className="btn-accent !px-4 !py-2 text-xs text-center inline-block"
-                >
-                  ادفع واشترك ({course.price ?? 0} ج.م)
-                </Link>
+                <div className="flex items-center gap-2 w-full pt-2">
+                  <Link
+                    to={`/courses/${course._id}`}
+                    className="flex-1 text-center rounded-xl border border-white/10 bg-white/5 py-2.5 text-xs font-semibold text-white hover:bg-white/10 transition"
+                  >
+                    عرض المحتوى 📖
+                  </Link>
+                  <button
+                    onClick={() => setSelectedCourseForCheckout(course)}
+                    className="flex-1 rounded-xl bg-emerald-500 py-2.5 text-xs font-bold text-black hover:bg-emerald-400 transition shadow-md shadow-emerald-500/10"
+                  >
+                    اشترك الآن 🔓
+                  </button>
+                </div>
               }
             >
-              <p className="text-charcoal/70">{course.description || 'مفيش وصف مضاف.'}</p>
+              <p className="text-white/70 text-xs line-clamp-2">{course.description || 'مفيش وصف مضاف.'}</p>
               <div className="mt-3 flex flex-wrap gap-1.5 text-xs">
-                <span className="rounded-full bg-ink/5 px-2.5 py-1 text-ink">{course.skill}</span>
-                <span className="rounded-full bg-ink/5 px-2.5 py-1 text-ink">{course.level}</span>
-                {course.provider && <span className="rounded-full bg-ink/5 px-2.5 py-1 text-ink">{course.provider}</span>}
+                <span className="rounded-full bg-white/5 px-2.5 py-1 text-white/70">{course.skill}</span>
+                <span className="rounded-full bg-white/5 px-2.5 py-1 text-white/70">{course.level}</span>
+                {course.provider && <span className="rounded-full bg-white/5 px-2.5 py-1 text-white/70">{course.provider}</span>}
               </div>
-              {course.questions?.length > 0 && (
-                <Link
-                  to={`/courses/${course._id}/exam`}
-                  className="mt-3 inline-block text-xs font-semibold text-ink underline"
-                >
-                  ابدأ اختبار الكورس ({course.questions.length} سؤال)
-                </Link>
-              )}
+
+              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-white/40">
+                <span>{course.lessonsCount || (course.lessons ? course.lessons.length : 0)} دروس</span>
+                {course.enrolledCount !== undefined && (
+                  <span>{course.enrolledCount} طالب مشترك</span>
+                )}
+              </div>
             </Card>
           ))}
         </div>
       )}
+
+      {/* Reusable Checkout Modal */}
+      <CheckoutModal
+        isOpen={Boolean(selectedCourseForCheckout)}
+        onClose={() => setSelectedCourseForCheckout(null)}
+        course={selectedCourseForCheckout}
+        onSuccess={(receipt) => {
+          fetchCourses();
+        }}
+      />
     </div>
   );
 };
 
 export default Courses;
+

@@ -18,19 +18,33 @@ import AdminCourses from './pages/AdminCourses';
 import ExamPage from './pages/ExamPage';
 import PaymentPage from './pages/PaymentPage';
 import PaymentResult from './pages/PaymentResult';
+import CourseDetail from './pages/CourseDetail';
 import useAuth from './hooks/useAuth';
 
 // حماية الصفحات اللي محتاجة تسجيل دخول
-const ProtectedRoute = ({ children, adminOnly = false }) => {
+const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div className="py-24 text-center text-muted">جاري التحميل...</div>;
+    return <div className="py-24 text-center text-white/50 text-sm">جاري التحميل...</div>;
   }
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-  if (adminOnly && user.role !== 'admin') {
+  return children;
+};
+
+// حماية الصفحات الإدارية العليا فقط للأدمن (Admin Route Wrapper)
+const AdminRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div className="py-24 text-center text-white/50 text-sm">جاري التحقق من الصلاحيات...</div>;
+  }
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+  if (user.role !== 'admin') {
     return <Navigate to={user.role === 'client' ? '/client-dashboard' : '/dashboard'} replace />;
   }
   return children;
@@ -50,11 +64,19 @@ function App() {
           <Route path="/community" element={<Community />} />
           <Route path="/courses" element={<Courses />} />
           <Route
+            path="/courses/:courseId"
+            element={
+              <ProtectedRoute>
+                <CourseDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/admin/courses"
             element={
-              <ProtectedRoute adminOnly>
+              <AdminRoute>
                 <AdminCourses />
-              </ProtectedRoute>
+              </AdminRoute>
             }
           />
           <Route
@@ -104,9 +126,9 @@ function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute adminOnly>
+              <AdminRoute>
                 <AdminDashboard />
-              </ProtectedRoute>
+              </AdminRoute>
             }
           />
           <Route
